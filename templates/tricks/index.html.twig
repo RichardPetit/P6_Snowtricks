@@ -4,7 +4,7 @@
 
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="assets/styles/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
 {#    {{ encore_entry_link_tags('app') }}#}
@@ -12,160 +12,32 @@
 
 {% block body %}
     <div class="catchphrase">
-        Le wiki des Tricks de Snowboard ! (phrase d'accroche)
+        <p>Le wiki des Tricks de Snowboard !</p>
     </div>
-
 
 <section class="tricks">
     <div class="container">
         <div class="row justify-content-around">
-            <div class="col-2">
-                <div class="card">
-                    <h2>Nom de la figure</h2>
-                    <div class="content">
-                        <img src="public/img/BWk4bXVB.jpg" alt="">
-                        <div class="metadata">Écrit le 10/05/2021 à 18h02</div>
-                        <p>
-                            {#            <a href="{{ path('tricks_show') }}"class="btn btn-primary">Voir en détail</a>#}
-                            <i class="fas fa-pen"></i>
-                            <i class="fas fa-trash-alt"></i>
-                        </p>
+            {% for trick in tricks %}
+
+                <div class="col-2.5">
+                    <div class="card card-trick">
+                        <img class="mini-picture" src="/img/BWk4bXVB.jpg" alt="">
+                        <div class="trick-content">
+{#                            <a class="trick-name"href="{{ path('tricks_show') }}">{{ trick.name }}</a>#}
+                            <a href="#">{{ trick.name }}</a>
+                            <a href=""><i class="fas fa-pen"></i></a>
+                            <a href=""><i class="fas fa-trash-alt"></i></a>
+                        </div>
+                        <div class="metadata">Créée le {{ trick.createdAt | date ('d/m/Y')}} à {{ trick.createdAt | date ('H:i')}}</div>
                     </div>
                 </div>
-            </div>
-            <div class="col-2">
-                <div class="card">
-                    <h2>Nom de la figure</h2>
-                    <div class="content">
-                        <img src="http://placehold.it/150x100" alt="">
-                        <div class="metadata">Écrit le 10/05/2021 à 18h02</div>
-                        <p>
-                            {#            <a href="{{ path('tricks_show') }}"class="btn btn-primary">Voir en détail</a>#}
-                            <i class="fas fa-pen"></i>
-                            <i class="fas fa-trash-alt"></i>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-2">
-                <div class="card">
-                    <h2>Nom de la figure</h2>
-                    <div class="content">
-                        <img src="http://placehold.it/150x100" alt="">
-                        <div class="metadata">Écrit le 10/05/2021 à 18h02</div>
-                        <p>
-                            {#            <a href="{{ path('tricks_show') }}"class="btn btn-primary">Voir en détail</a>#}
-                            <i class="fas fa-pen"></i>
-                            <i class="fas fa-trash-alt"></i>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-2">
-                <div class="card">
-                    <h2>Nom de la figure</h2>
-                    <div class="content">
-                        <img src="http://placehold.it/150x100" alt="">
-                        <div class="metadata">Écrit le 10/05/2021 à 18h02</div>
-                        <p>
-                            {#            <a href="{{ path('tricks_show') }}"class="btn btn-primary">Voir en détail</a>#}
-                            <i class="fas fa-pen"></i>
-                            <i class="fas fa-trash-alt"></i>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-2">
-                <div class="card">
-                    <h2>Nom de la figure</h2>
-                    <div class="content">
-                        <img src="http://placehold.it/150x100" alt="">
-                        <div class="metadata">Écrit le 10/05/2021 à 18h02</div>
-                        <p>
-                            {#            <a href="{{ path('tricks_show') }}"class="btn btn-primary">Voir en détail</a>#}
-                            <i class="fas fa-pen"></i>
-                            <i class="fas fa-trash-alt"></i>
-                        </p>
-                    </div>
-                </div>
-            </div>
+
+            {% endfor %}
         </div>
+
         <br>
-        <div class="row justify-content-around">
-            <div class="col-2">
-                <div class="card">
-                    <h2>Nom de la figure</h2>
-                    <div class="content">
-                        <img src="public/img/BWk4bXVB.jpg" alt="">
-                        <div class="metadata">Écrit le 10/05/2021 à 18h02</div>
-                        <p>
-                            {#            <a href="{{ path('tricks_show') }}"class="btn btn-primary">Voir en détail</a>#}
-                            <i class="fas fa-pen"></i>
-                            <i class="fas fa-trash-alt"></i>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-2">
-                <div class="card">
-                    <h2>Nom de la figure</h2>
-                    <div class="content">
-                        <img src="http://placehold.it/150x100" alt="">
-                        <div class="metadata">Écrit le 10/05/2021 à 18h02</div>
-                        <p>
-                            {#            <a href="{{ path('tricks_show') }}"class="btn btn-primary">Voir en détail</a>#}
-                            <i class="fas fa-pen"></i>
-                            <i class="fas fa-trash-alt"></i>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-2">
-                <div class="card">
-                    <h2>Nom de la figure</h2>
-                    <div class="content">
-                        <img src="http://placehold.it/150x100" alt="">
-                        <div class="metadata">Écrit le 10/05/2021 à 18h02</div>
-                        <p>
-                            {#            <a href="{{ path('tricks_show') }}"class="btn btn-primary">Voir en détail</a>#}
-                            <i class="fas fa-pen"></i>
-                            <i class="fas fa-trash-alt"></i>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-2">
-                <div class="card">
-                    <h2>Nom de la figure</h2>
-                    <div class="content">
-                        <img src="http://placehold.it/150x100" alt="">
-                        <div class="metadata">Écrit le 10/05/2021 à 18h02</div>
-                        <p>
-                            {#            <a href="{{ path('tricks_show') }}"class="btn btn-primary">Voir en détail</a>#}
-                            <i class="fas fa-pen"></i>
-                            <i class="fas fa-trash-alt"></i>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-2">
-                <div class="card">
-                    <h2>Nom de la figure</h2>
-                    <div class="content">
-                        <img src="http://placehold.it/150x100" alt="">
-                        <div class="metadata">Écrit le 10/05/2021 à 18h02</div>
-                        <p>
-                            {#            <a href="{{ path('tricks_show') }}"class="btn btn-primary">Voir en détail</a>#}
-                            <i class="fas fa-pen"></i>
-                            <i class="fas fa-trash-alt"></i>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
-
 
 </section>
 

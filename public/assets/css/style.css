@@ -1,0 +1,56 @@
+body {
+    background: white;
+}
+
+.catchphrase{
+    font-size: 2rem;
+    height: 20rem;
+    background-image: url(/img/BWk4bXVB.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.catchphrase p{
+    background-image: linear-gradient(to left,black, navy, black);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.mini-picture{
+    width-max: 150px;
+    height: 100px;
+}
+
+.card-trick {
+    margin-top: 2rem;
+    border-radius: 10px;
+    border-color: lightblue;
+    transition: transform .5s;
+}
+
+.card-trick:hover{
+    transform: scale(1.05);
+}
+.card-trick img{
+    margin: 3px;
+    border-radius: 5px;
+}
+
+.fa-pen:hover{
+    color: lightblue;
+}
+.fa-trash-alt:hover{
+    color: lightblue;
+}
+.trick-content{
+    display: flex;
+    justify-content: space-around;
+    margin: 2px;
+}
+.trick-name{
+    width: 6rem;
+    height: 1rem;
+    overflow: hidden;
+}

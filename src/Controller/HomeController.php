@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Tricks;
+use App\Repository\TricksRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,10 +13,12 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class HomeController extends AbstractController
 {
-    public function __invoke(): Response
+    public function __invoke(TricksRepository $tricksRepository): Response
     {
+        $tricks = $tricksRepository->getTricksByAlpha();
         return $this->render('tricks/index.html.twig', [
             'controller_name' => 'HomeController',
+            'tricks' => $tricks,
         ]);
     }
 }

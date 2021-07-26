@@ -16,7 +16,6 @@ class HomeController extends AbstractController
     {
         $tricks = $tricksRepository->getTricksByAlpha();
         return $this->render('tricks/index.html.twig', [
-            'controller_name' => 'HomeController',
             'tricks' => $tricks,
         ]);
     }

@@ -2,62 +2,42 @@
 
 {% block title %}Hello TricksController!{% endblock %}
 
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+{#    {{ encore_entry_link_tags('app') }}#}
+{% endblock %}
+
 {% block body %}
+    <div class="catchphrase">
+        <p>Le wiki des Tricks de Snowboard !</p>
+    </div>
+
 <section class="tricks">
-    <article>
-        <h2>Nom de la figure</h2>
-        <div class="metadata">Écrit le 10/05/2021 à 18h02</div>
-        <div class="content">
-            <img src="http://placehold.it/350x200" alt="">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lacinia, libero non auctor cursus, turpis enim finibus
-                arcu, eget ornare est erat a ex. In porttitor tincidunt mi. Praesent nec nulla bibendum massa congue auctor eu nec ligula.
-                Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ut purus vehicula,
-                molestie lacus a, finibus magna. Aliquam sagittis lorem erat, et fermentum quam gravida nec. Donec at feugiat odio,
-                sit amet congue dolor.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lacinia, libero non auctor cursus, turpis enim finibus
-                arcu, eget ornare est erat a ex. In porttitor tincidunt mi. Praesent nec nulla bibendum massa congue auctor eu nec ligula.
-                Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ut purus vehicula,
-                molestie lacus a, finibus magna. Aliquam sagittis lorem erat, et fermentum quam gravida nec. Donec at feugiat odio,
-                sit amet congue dolor.</p>
-{#            <a href="{{ path('tricks_show') }}"class="btn btn-primary">Voir en détail</a>#}
+    <div class="container">
+        <div class="row justify-content-around">
+            {% for trick in tricks %}
+
+                <div class="col-2.5">
+                    <div class="card card-trick">
+                        <img class="mini-picture" src="/img/BWk4bXVB.jpg" alt="">
+                        <div class="trick-content">
+{#                            <a class="trick-name"href="{{ path('tricks_show', {'id': trick.id}) }}">{{ trick.name }}</a>#}
+                            <a href="#">{{ trick.name }}</a>
+                            <a href=""><i class="fas fa-pen"></i></a>
+                            <a href=""><i class="fas fa-trash-alt"></i></a>
+                        </div>
+                        <div class="metadata">Créée le {{ trick.createdAt | date ('d/m/Y')}} à {{ trick.createdAt | date ('H:i')}}</div>
+                    </div>
+                </div>
+
+            {% endfor %}
         </div>
-    </article>
-    <article>
-        <h2>Nom de la figure</h2>
-        <div class="metadata">Écrit le 10/05/2021 à 18h02</div>
-        <div class="content">
-            <img src="" alt="">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lacinia, libero non auctor cursus, turpis enim finibus
-                arcu, eget ornare est erat a ex. In porttitor tincidunt mi. Praesent nec nulla bibendum massa congue auctor eu nec ligula.
-                Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ut purus vehicula,
-                molestie lacus a, finibus magna. Aliquam sagittis lorem erat, et fermentum quam gravida nec. Donec at feugiat odio,
-                sit amet congue dolor.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lacinia, libero non auctor cursus, turpis enim finibus
-                arcu, eget ornare est erat a ex. In porttitor tincidunt mi. Praesent nec nulla bibendum massa congue auctor eu nec ligula.
-                Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ut purus vehicula,
-                molestie lacus a, finibus magna. Aliquam sagittis lorem erat, et fermentum quam gravida nec. Donec at feugiat odio,
-                sit amet congue dolor.</p>
-{#            <a href="{{ path('tricks_show') }}"class="btn btn-primary">Voir en détail</a>#}
-        </div>
-    </article>
-    <article>
-        <h2>Nom de la figure</h2>
-        <div class="metadata">Écrit le 10/05/2021 à 18h02</div>
-        <div class="content">
-            <img src="" alt="">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lacinia, libero non auctor cursus, turpis enim finibus
-                arcu, eget ornare est erat a ex. In porttitor tincidunt mi. Praesent nec nulla bibendum massa congue auctor eu nec ligula.
-                Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ut purus vehicula,
-                molestie lacus a, finibus magna. Aliquam sagittis lorem erat, et fermentum quam gravida nec. Donec at feugiat odio,
-                sit amet congue dolor.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lacinia, libero non auctor cursus, turpis enim finibus
-                arcu, eget ornare est erat a ex. In porttitor tincidunt mi. Praesent nec nulla bibendum massa congue auctor eu nec ligula.
-                Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ut purus vehicula,
-                molestie lacus a, finibus magna. Aliquam sagittis lorem erat, et fermentum quam gravida nec. Donec at feugiat odio,
-                sit amet congue dolor.</p>
-{#            <a href="{{ path('tricks_show') }}"class="btn btn-primary">Voir en détail</a>#}
-        </div>
-    </article>
+
+        <br>
+    </div>
 
 </section>
 

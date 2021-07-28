@@ -38,12 +38,14 @@
             </label>
         </div>
     #}
-    <div class="form-group">
-        <button class="btn btn-lg btn-primary" type="submit">
-            Connexion
-        </button>
+    <div class="form-bottom">
+        <div class="form-group ">
+            <button class="btn btn-lg btn-primary" type="submit">
+                Connexion
+            </button>
+        </div>
+        <br>
+        <a id="passwordForget" href="{{ path('app_forgot_password_request') }}">Mot de passe oublié?</a>
     </div>
-    <br>
-    <a id="passwordForget" href="{{ path('app_forgot_password_request') }}">Mot de passe oublié?</a>
 </form>
 {% endblock %}

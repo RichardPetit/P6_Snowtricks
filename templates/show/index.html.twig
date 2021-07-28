@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ShowController!{% endblock %}
+
+{% block body %}
+
+    <article>
+        <h2>{{ trick.name }}</h2>
+        <div class="metadata">Fiche créée le {{ trick.createdAt | date ('d/m/Y')}} à {{ trick.createdAt | date ('H:i')}}</div>
+        <div class="content">
+            <img src="http://placehold.it/500x300" alt="">
+            <p>{{ trick.description | raw}}</p>
+        </div>
+
+    </article>
+
+
+{% endblock %}

@@ -14,7 +14,7 @@ class HomeController extends AbstractController
 {
     public function __invoke(TricksRepository $tricksRepository): Response
     {
-        $tricks = $tricksRepository->getTricksByAlpha();
+        $tricks = $tricksRepository->getTricksByCreationDate();
         return $this->render('tricks/index.html.twig', [
             'tricks' => $tricks,
         ]);

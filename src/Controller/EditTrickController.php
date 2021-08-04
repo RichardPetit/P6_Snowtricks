@@ -16,7 +16,13 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class EditTrickController extends AbstractController
 {
-
+    /**
+     * @param Tricks $trick
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @param $id
+     * @return Response
+     */
     public function __invoke(Tricks $trick, Request $request, EntityManagerInterface $em, $id): Response
     {
 //        $form = $this->createFormBuilder($trick)

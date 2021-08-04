@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Tricks;
+use App\Form\TrickType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,10 +20,11 @@ class CreateTrickController extends AbstractController
     public function __invoke(Request $request, EntityManagerInterface $em): Response
     {
         $trick = new Tricks();
-        $form = $this->createFormBuilder($trick)
-            ->add('name')
-            ->add('description')
-            ->getForm();
+//        $form = $this->createFormBuilder($trick)
+//            ->add('name')
+//            ->add('description')
+//            ->getForm();
+        $form = $this->createForm(TrickType::class, $trick);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){

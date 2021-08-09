@@ -17,7 +17,7 @@ class Slugify extends AbstractController
         $input = preg_replace('~-+~', '-', $input);
         $input = strtolower($input);
         if (empty($input)) {
-            return 'No slug has been sent to find a program in program\'s table.';
+            return 'No slug has been sent to find a trick in trick\'s table.';
         }
         return $input;
     }

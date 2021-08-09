@@ -26,7 +26,10 @@
                         <div class="trick-content">
                             <a class="trick-name"href="{{ path('trick_show', {'id': trick.id}) }}">{{ trick.name }}</a>
                             <a href="{{ path('edit_trick', {'id': trick.id}) }}"><i class="fas fa-pen"></i></a>
-                            <a href="{{ path('delete_trick', {'id': trick.id}) }}"><i class="fas fa-trash-alt"></i></a>
+                            <a href="{{ path('delete_trick', {'id': trick.id}) }}"
+                               onclick="return confirm('Êtes vous sur de vouloir supprimer cet article ?');">
+                               <i class="fas fa-trash-alt"></i>
+                            </a>
                         </div>
                         <div class="metadata">Créée le {{ trick.createdAt | date ('d/m/Y')}} à {{ trick.createdAt | date ('H:i')}}</div>
                     </div>

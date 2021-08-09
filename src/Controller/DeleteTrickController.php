@@ -17,10 +17,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class DeleteTrickController extends AbstractController
 {
 
-    public function __invoke(Tricks $trick, EntityManagerInterface $em): Response
+    public function __invoke(EntityManagerInterface $em, Tricks $trick = null): Response
     {
-        $em->remove($trick);
-        $em->flush();
+        if ($trick !== null) {
+            $em->remove($trick);
+            $em->flush();
+        }
+
         return $this->redirectToRoute('home');
     }
 }

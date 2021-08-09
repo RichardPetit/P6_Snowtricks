@@ -20,10 +20,7 @@ class CreateTrickController extends AbstractController
     public function __invoke(Request $request, EntityManagerInterface $em): Response
     {
         $trick = new Tricks();
-//        $form = $this->createFormBuilder($trick)
-//            ->add('name')
-//            ->add('description')
-//            ->getForm();
+
         $form = $this->createForm(TrickType::class, $trick);
 
         $form->handleRequest($request);
@@ -38,4 +35,12 @@ class CreateTrickController extends AbstractController
             'formTrick' => $form->createView(),
         ]);
     }
+
+    private function renderTrickCreationForm(): Response
+    {
+        return $this->render('create/index.html.twig', [
+            'formTrick' => $form->createView(),
+        ]);
+    }
+
 }

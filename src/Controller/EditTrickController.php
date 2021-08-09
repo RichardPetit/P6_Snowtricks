@@ -6,6 +6,7 @@ use App\Entity\Tricks;
 use App\Form\TrickType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,31 +24,37 @@ class EditTrickController extends AbstractController
      * @param $id
      * @return Response
      */
-    public function __invoke(Tricks $trick, Request $request, EntityManagerInterface $em, $id): Response
+    public function __invoke(Request $request, EntityManagerInterface $em, Tricks $trick = null): Response
     {
-//        $form = $this->createFormBuilder($trick)
-//            ->add('name')
-//            ->add('description')
-//            ->getForm();
+        if ($trick === null) {
+            return $this->redirectToRoute('home');
+        }
         $form = $this->createForm(TrickType::class, $trick);
 
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
-            if ($trick->getId()){
-                $trick->setCreatedAt(new \DateTimeImmutable());
-            }
-            $em->persist($trick);
-            $em->flush();
+            $this->updateTrick($trick, $em);
 
             return $this->redirectToRoute('trick_show', ['id' => $trick->getId()]);
-//            return $this->redirectToRoute('home');
 
         }
 
+        return $this->renderTrickForm($form);
+    }
+
+
+    private function renderTrickForm(FormInterface $form): Response
+    {
         return $this->render('edit_trick/index.html.twig', [
             'formTrick' => $form->createView(),
-            'editMode' =>$trick->getId() !== null
         ]);
     }
+
+    private function updateTrick(Tricks $trick, EntityManagerInterface $em)
+    {
+        $em->persist($trick);
+        $em->flush();
+    }
+
 }

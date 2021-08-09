@@ -17,23 +17,19 @@ class ShowTrickController extends AbstractController
 
     public function __invoke(TricksRepository $tricksRepository, int $id): Response
     {
+
         $trick = $this->getTrick($tricksRepository, $id);
-        $this->redirectToHomeIfTrickIsNull($trick);
+        if ($trick === null) {
+            return $this->redirectToRoute('home');
+        }
         return $this->renderTrickForm($trick);
     }
 
     private function getTrick(TricksRepository $tricksRepository, int $id): ?Tricks
     {
         return $tricksRepository->find($id);
-
     }
 
-    private function redirectToHomeIfTrickIsNull(?Tricks $trick): void
-    {
-        if ($trick === null) {
-            $this->redirectToRoute('home');
-        }
-    }
 
     private function renderTrickForm(Tricks $trick): Response
     {

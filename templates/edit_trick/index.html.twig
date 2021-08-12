@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification figure{% endblock %}
+
+{% form_theme formTrick 'bootstrap_5_layout.html.twig' %}
+
+{% block body %}
+    <h1>Modifier une figure !</h1>
+
+    {{ form_start(formTrick) }}
+    {#    <label for="">Nom</label>#}
+    {{ form_row(formTrick.name, {'attr': {'placeholder': "Nom de la figure"}}) }}
+    {#    <label for="">Description</label>#}
+    {{ form_row(formTrick.description) }}
+    <button type="submit" class="btn btn-success">Mettre à jour </button>
+
+    {{ form_end(formTrick) }}
+
+
+{% endblock %}

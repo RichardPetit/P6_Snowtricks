@@ -4,11 +4,12 @@ namespace App\Entity;
 
 use App\Repository\TricksRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=TricksRepository::class)
  */
-class Tricks
+class Trick
 {
     /**
      * @ORM\Id
@@ -19,6 +20,7 @@ class Tricks
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min=4, minMessage="Le nom doit faire 4 caractères minimum.")
      */
     private ?string $name;
 
@@ -31,6 +33,12 @@ class Tricks
      * @ORM\Column(type="datetime_immutable")
      */
     private ?\DateTimeImmutable $createdAt;
+
+
+    public function __construct()
+    {
+        $this->setCreatedAt(new \DateTimeImmutable());
+    }
 
     public function getId(): ?int
     {
@@ -72,4 +80,6 @@ class Tricks
 
         return $this;
     }
+
+
 }

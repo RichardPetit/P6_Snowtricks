@@ -28,7 +28,7 @@
             <div class="collapse navbar-collapse row justify-content-end" id="navbarColor01">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Accueil
+                        <a class="nav-link" href="{{ path('home') }}">Accueil
                             <span class="visually-hidden">(current)</span>
                         </a>
                     </li>
@@ -36,7 +36,7 @@
                         <a class="nav-link" href="/tricks">Tricks</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/tricks/new">Ajouter un trick</a>
+                        <a class="nav-link" href="{{ path('trick_create') }}">Ajouter un trick</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/auth">Me connecter</a>

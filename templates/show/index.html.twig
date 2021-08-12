@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ShowController!{% endblock %}
+
+{% block body %}
+
+    <article>
+        <h2>{{ trick.name }}</h2>
+        <div class="metadata">Fiche créée le {{ trick.createdAt | date ('d/m/Y')}} à {{ trick.createdAt | date ('H:i')}}</div>
+        <div class="metadata">Catégorie de la figue : nom de la catérogie </div>
+        <div class="content">
+            <img src="http://placehold.it/500x300" alt="">
+            <p>{{ trick.description | raw}}</p>
+        </div>
+
+    </article>
+
+    <section id="commentaires">
+{#        {% for comment in tricks.comments %}#}
+            <div class="comment">
+                <div class="row">
+                    <div class="col-3">
+                        Auteur du commentaire; <small>date du commentaire</small>
+                    </div>
+                    <div class="col">
+                        <p> Contenu du commentaire............Morbi molestie eleifend magna non ultricies. Nunc tempor neque
+                            in magna vehicula, sit amet condimentum erat ullamcorper. Mauris dictum ullamcorper augue, et
+                            iaculis nibh maximus at. Praesent venenatis mi et aliquet sodales. Class aptent taciti sociosqu
+                            ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent gravida urna nibh,
+                            consectetur sodales lacus commodo ac. Nulla facilisi. Aenean fringilla felis a nulla finibus
+                            rhoncus.
+                            <br>
+                            Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin
+                            interdum dictum ex at vehicula. Morbi porttitor, lacus a accumsan auctor, mauris mauris
+                            ullamcorper velit, luctus facilisis enim arcu ullamcorper neque. Mauris suscipit sed dolor id
+                            placerat. Donec eleifend condimentum facilisis. Maecenas id diam ac massa posuere iaculis quis
+                            vitae metus. Phasellus mauris dui, consectetur at tincidunt eu, convallis lacinia lectus. </p>
+                    </div>
+                </div>
+            </div>
+{#        {% endfor %}#}
+    </section>
+
+
+{% endblock %}

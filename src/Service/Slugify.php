@@ -6,20 +6,11 @@ namespace App\Service;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class Slugify extends AbstractController
+class Slugify
 {
-    public function generate(string $input) : string
+    public function generate()
     {
-        $input = preg_replace('~[^\pL\d]+~u', '-', $input);
-        $input = iconv('utf-8', 'us-ascii//TRANSLIT', $input);
-        $input = preg_replace('~[^-\w]+~', '', $input);
-        $input = trim($input, '-');
-        $input = preg_replace('~-+~', '-', $input);
-        $input = strtolower($input);
-        if (empty($input)) {
-            return 'No slug has been sent to find a trick in trick\'s table.';
-        }
-        return $input;
+
     }
 
 }

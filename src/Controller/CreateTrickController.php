@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Tricks;
+use App\Entity\Trick;
 use App\Form\TrickType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,7 +19,7 @@ class CreateTrickController extends AbstractController
 
     public function __invoke(Request $request, EntityManagerInterface $em): Response
     {
-        $trick = new Tricks();
+        $trick = new Trick();
 
         $form = $this->createForm(TrickType::class, $trick);
 

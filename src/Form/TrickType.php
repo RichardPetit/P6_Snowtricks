@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Tricks;
+use App\Entity\Trick;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,7 +20,7 @@ class TrickType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Tricks::class,
+            'data_class' => Trick::class,
         ]);
     }
 }

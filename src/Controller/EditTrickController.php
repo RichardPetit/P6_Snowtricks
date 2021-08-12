@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Tricks;
+use App\Entity\Trick;
 use App\Form\TrickType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,13 +18,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class EditTrickController extends AbstractController
 {
     /**
-     * @param Tricks $trick
+     * @param Trick $trick
      * @param Request $request
      * @param EntityManagerInterface $em
      * @param $id
      * @return Response
      */
-    public function __invoke(Request $request, EntityManagerInterface $em, Tricks $trick = null): Response
+    public function __invoke(Request $request, EntityManagerInterface $em, Trick $trick = null): Response
     {
         if ($trick === null) {
             return $this->redirectToRoute('home');
@@ -51,7 +51,7 @@ class EditTrickController extends AbstractController
         ]);
     }
 
-    private function updateTrick(Tricks $trick, EntityManagerInterface $em)
+    private function updateTrick(Trick $trick, EntityManagerInterface $em)
     {
         $em->persist($trick);
         $em->flush();

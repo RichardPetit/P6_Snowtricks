@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Comment;
 use App\Entity\Trick;
 use App\Form\CommentType;
+use App\Repository\CommentRepository;
 use App\Repository\TricksRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,10 +20,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class ShowTrickController extends AbstractController
 {
 
-    public function __invoke(TricksRepository $tricksRepository, int $id, Request $request, EntityManagerInterface $em): Response
+    public function __invoke(CommentRepository $commentRepository, TricksRepository $tricksRepository, int $id, Request $request, EntityManagerInterface $em): Response
     {
 
         $trick = $this->getTrick($tricksRepository, $id);
+//        $comments = $commentRepository->getCommentsForArticle($id);
         if ($trick === null) {
             return $this->redirectToRoute('home');
         }

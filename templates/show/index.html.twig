@@ -22,15 +22,15 @@
                 <div class="row">
                     <div class="col-3">
                         <p>Publié le
-{#                            {{ formComment.createdAt|date('d/m/Y H:i')}}#}
+                            {{ comment.createdAt|date('d/m/Y H:i')}}
                             <br>
                             Par
-{#                            {{ formComment.nickname }}#}
+                            {{ comment.nickname }}
                         </p>
                     </div>
                     <div class="col">
                         <p>
-{#                            {{ formComment.content|raw }}#}
+                            {{ comment.content|raw }}
                             Contenu du commentaire............Morbi molestie eleifend magna non ultricies. Nunc tempor neque
                             in magna vehicula, sit amet condimentum erat ullamcorper. Mauris dictum ullamcorper augue, et
                             iaculis nibh maximus at. Praesent venenatis mi et aliquet sodales. Class aptent taciti sociosqu

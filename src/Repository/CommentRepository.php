@@ -19,6 +19,42 @@ class CommentRepository extends ServiceEntityRepository
         parent::__construct($registry, Comment::class);
     }
 
+    /**
+     * @return Comment[] Returns an array of Comment objects
+     * @param int $id
+     */
+
+    public function getCommentsForArticle(int $id): ?Comment
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.active = 1')
+            ->setParameter('id', $id)
+            ->orderBy('c.id', 'DESC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function changeToActiveStatusForComment(int $id)
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.id', $id )
+//            ->andWhere('c.trick_id', $id)
+            ->andWhere('c.active = 0')
+            ->setParameter('c.active = 1')
+            ;
+    }
+    public function changeToInactiveStatusForComment(int $id)
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.id', $id )
+            ->andWhere('c.active = 1')
+            ->setParameter('c.active = 0')
+            ;
+    }
+
+
     // /**
     //  * @return Comment[] Returns an array of Comment objects
     //  */
@@ -35,6 +71,7 @@ class CommentRepository extends ServiceEntityRepository
         ;
     }
     */
+
 
     /*
     public function findOneBySomeField($value): ?Comment

@@ -9,11 +9,13 @@
 
         {% block stylesheets %}
             {#{{ encore_entry_link_tags('app') }}#}
+            <link rel=\"stylesheet\" href=\"/assets/css/style.css\">
         {% endblock %}
 
         {% block javascripts %}
             {#{{ encore_entry_script_tags('app') }}#}
         {% endblock %}
+
     </head>
     <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -38,12 +40,23 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('trick_create') }}">Ajouter un trick</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/auth">Me connecter</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/register">Je m'inscris</a>
-                    </li>
+                    {% if app.user %}
+                        <li class="nav-item nav-link">{{ app.user.email }}</li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('profil') }}"> Mon profil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_logout') }}"> Me déconnecter</a>
+                        </li>
+
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_login') }}"> Me connecter</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/register">Je m'inscris</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

@@ -35,6 +35,7 @@ class ShowTrickController extends AbstractController
         $commentForm->handleRequest($request);
         if ($commentForm->isSubmitted() && $commentForm->isValid()){
             $comment->setTrick($trick);
+            $comment->setUser($this->getUser());
             $em->persist($comment);
             $em->flush();
 

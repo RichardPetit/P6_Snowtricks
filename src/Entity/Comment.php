@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=CommentRepository::class)
@@ -28,11 +29,6 @@ class Comment
     private $active = false;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private ?string $nickname;
-
-    /**
      * @ORM\Column(type="datetime_immutable")
      */
     private ?\DateTimeImmutable $created_at;
@@ -42,6 +38,12 @@ class Comment
      * @ORM\JoinColumn(nullable=false)
      */
     private $trick;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
     /**
      * @param int|null $id
@@ -80,18 +82,6 @@ class Comment
         return $this;
     }
 
-    public function getNickname(): ?string
-    {
-        return $this->nickname;
-    }
-
-    public function setNickname(string $nickname): self
-    {
-        $this->nickname = $nickname;
-
-        return $this;
-    }
-
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->created_at;
@@ -112,6 +102,18 @@ class Comment
     public function setTrick(?Trick $trick): self
     {
         $this->trick = $trick;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?UserInterface $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des commentaires{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+    {#    {{ encore_entry_link_tags('app') }}#}
+{% endblock %}
+
+{% block body %}
+
+
+<div class="example-wrapper">
+    <h1>Liste des commentaires</h1>
+
+
+    <section class="tricks">
+        <div class="container">
+            <div class="row justify-content-around">
+                {% for comment in comments %}
+
+                    <div class="col-9">
+                        <div class="card card-trick">
+                            <div class="trick-content">
+                                <p>Auteur : {{ comment.nickname }}</p>
+                                <p>Commentaire : {{ comment.content }}</p>
+                                <p>Figure : {{ comment.trick.name }}</p>
+                            </div>
+                            <div class="metadata">Créée le {{ comment.createdAt | date ('d/m/Y')}} à {{ comment.createdAt | date ('H:i')}}</div>
+                            <a href=""><i class="fas fa-pen"></i></a>
+                            <a href=""
+                               onclick="return confirm('Êtes vous sur de vouloir supprimer ce commentaire ?');">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </div>
+                        <br>
+                    </div>
+
+
+                {% endfor %}
+
+            </div>
+            <br>
+        </div>
+    </section>
+</div>
+{% endblock %}

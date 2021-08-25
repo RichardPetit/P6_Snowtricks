@@ -38,7 +38,7 @@ class ShowTrickController extends AbstractController
             $em->persist($comment);
             $em->flush();
 
-            $this->addFlash('message', 'Votre commentaire a bien été ajouté');
+            $this->addFlash('success', 'Votre commentaire a bien été ajouté');
         }
 
 

@@ -12,9 +12,16 @@
     {{ form_row(formTrick.name, {'attr': {'placeholder': "Nom de la figure"}}) }}
     {#    <label for="">Description</label>#}
     {{ form_row(formTrick.description) }}
+
     <button type="submit" class="btn btn-success">Mettre à jour </button>
 
     {{ form_end(formTrick) }}
+    <br>
+    <a href="#">Ajouter des Illustrations (images, vidéos)</a>
+{#    <a href="{{ path('media_trick', {'id': trick.id}) }}"><i class="fas fa-pen"></i></a>#}
+
+
+    {#    ajouer un nouveau form ou sauvegarder les médias #}
 
 
 {% endblock %}

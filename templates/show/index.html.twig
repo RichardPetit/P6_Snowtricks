@@ -16,30 +16,45 @@
     </article>
 
     <section id="commentaires">
-{#        {% for comment in tricks.comments %}#}
+            <h2>Liste des commentaires</h2>
+        {% for comment in trick.comments %}
             <div class="comment">
                 <div class="row">
                     <div class="col-3">
-                        Auteur du commentaire; <small>date du commentaire</small>
+                        <p>Publié le
+                            {{ comment.createdAt|date('d/m/Y H:i')}}
+                            <br>
+                            Par
+                            {{ comment.user.email }}
+                        </p>
                     </div>
                     <div class="col">
-                        <p> Contenu du commentaire............Morbi molestie eleifend magna non ultricies. Nunc tempor neque
-                            in magna vehicula, sit amet condimentum erat ullamcorper. Mauris dictum ullamcorper augue, et
-                            iaculis nibh maximus at. Praesent venenatis mi et aliquet sodales. Class aptent taciti sociosqu
-                            ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent gravida urna nibh,
-                            consectetur sodales lacus commodo ac. Nulla facilisi. Aenean fringilla felis a nulla finibus
-                            rhoncus.
-                            <br>
-                            Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin
-                            interdum dictum ex at vehicula. Morbi porttitor, lacus a accumsan auctor, mauris mauris
-                            ullamcorper velit, luctus facilisis enim arcu ullamcorper neque. Mauris suscipit sed dolor id
-                            placerat. Donec eleifend condimentum facilisis. Maecenas id diam ac massa posuere iaculis quis
-                            vitae metus. Phasellus mauris dui, consectetur at tincidunt eu, convallis lacinia lectus. </p>
+                        <p>
+                            {{ comment.content|raw }}
+                        </p>
                     </div>
                 </div>
             </div>
-{#        {% endfor %}#}
+        {% endfor %}
     </section>
 
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <section>
+            <h2>Laisser un commentaire</h2>
+                <div class="comment">
+                        <div class="row">
+                            {{ form_start(formComment) }}
+                                {{ form_row(formComment.content) }}
+                                <button type="submit" class="btn btn-success">Enregistrer</button>
+                            {{ form_end(formComment) }}
+
+                    </div>
+                </div>
+
+            <div>
+
+            </div>
+        </section>
+    {% endif %}
 
 {% endblock %}

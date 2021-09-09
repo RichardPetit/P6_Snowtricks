@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\TrickMedia;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -19,7 +20,6 @@ class MediaType extends AbstractType
                     'Vidéo' => 'video',
                 ]])
             ->add('link')
-//            ->add('trick')
         ;
     }
 

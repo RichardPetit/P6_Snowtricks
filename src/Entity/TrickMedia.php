@@ -27,6 +27,7 @@ class TrickMedia
     /**
      * @ORM\Column(type="text")
      * @Assert\Length(min=15, minMessage="L'URL doit faire 15 caractères minimum.")
+     * @Assert\Url(message = "le format de l'adresse n'est pas correct")
      */
     private $link;
 

@@ -21,7 +21,6 @@ class MediaTrickController extends AbstractController
      * @param Request $request
      * @param EntityManagerInterface $em
      * @param Trick $trick
-     * @param $id
      * @return Response
      */
     public function __invoke(Request $request, EntityManagerInterface $em, Trick $trick = null): Response
@@ -35,7 +34,9 @@ class MediaTrickController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
+            $media->setTrick($trick);
             $this->saveMedia($media, $em);
+
             $this->addFlash('success', 'Le média a bien été ajouté.');
         }
 
@@ -55,18 +56,18 @@ class MediaTrickController extends AbstractController
         $em->flush();
     }
 
-//    private function secondWay(Request $request, EntityManagerInterface $em, Trick $trick){
-//        //Partie Media
-//
-//        $trickMedia = new TrickMedia();
-//        $mediaForm = $this->createForm(MediaType::class, $trickMedia);
-//        $mediaForm->handleRequest($request);
-//        if ($mediaForm->isSubmitted() && $mediaForm->isValid()){
-//            $trickMedia->setTrick($trick);
-//            $em->persist($trickMedia);
-//            $em->flush();
-//
-//            $this->addFlash('success', 'Le média a bien été ajouté.');
-//        }
-//    }
+    private function secondWay(Request $request, EntityManagerInterface $em, Trick $trick){
+        //Partie Media
+
+        $trickMedia = new TrickMedia();
+        $mediaForm = $this->createForm(MediaType::class, $trickMedia);
+        $mediaForm->handleRequest($request);
+        if ($mediaForm->isSubmitted() && $mediaForm->isValid()){
+            $trickMedia->setTrick($trick);
+            $em->persist($trickMedia);
+            $em->flush();
+
+            $this->addFlash('success', 'Le média a bien été ajouté.');
+        }
+    }
 }

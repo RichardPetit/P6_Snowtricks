@@ -46,6 +46,7 @@ class ShowTrickController extends AbstractController
 //        return $this->renderTrickForm($trick);
         return $this->render('show/index.html.twig', [
             'trick' => $trick,
+//            'media' =>$media,
             'formComment' => $commentForm->createView( )
         ]);
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Trick;
 use App\Form\TrickType;
@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
- * @Route("/trick/create", name="trick_create")
+ * @Route("/admin/tricks/create", name="trick_create")
  */
 class CreateTrickController extends AbstractController
 {

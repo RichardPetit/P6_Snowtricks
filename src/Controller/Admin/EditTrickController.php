@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Trick;
 use App\Form\TrickType;
@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
- * @Route("/admin/trick/{id}/edit", name="edit_trick")
+ * @Route("/admin/tricks/{id}", name="edit_trick", methods={"GET", "POST"})
  */
 class EditTrickController extends AbstractController
 {

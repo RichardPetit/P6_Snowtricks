@@ -22,7 +22,6 @@ final class Version20210906141954 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE trick_media (id INT AUTO_INCREMENT NOT NULL, trick_id INT NOT NULL, type VARCHAR(255) NOT NULL, link LONGTEXT NOT NULL, INDEX IDX_A103A1B3B46B9EE8 (trick_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE trick_media ADD CONSTRAINT FK_A103A1B3B46B9EE8 FOREIGN KEY (trick_id) REFERENCES trick (id)');
-        $this->addSql('DROP TABLE comment');
     }
 
     public function down(Schema $schema): void

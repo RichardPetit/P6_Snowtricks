@@ -38,6 +38,7 @@ class MediaTrickController extends AbstractController
             $this->saveMedia($media, $em);
 
             $this->addFlash('success', 'Le média a bien été ajouté.');
+            return $this->redirectToRoute('home');
         }
 
         return $this->renderMediaTrickForm($form);

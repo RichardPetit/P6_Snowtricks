@@ -1,0 +1,53 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+{#    {{ encore_entry_link_tags('app') }}#}
+{% endblock %}
+
+{% block body %}
+ <h2>Administration des figures</h2>
+
+<section class="tricks">
+    <div class="container">
+        <div class="row justify-content-around">
+            <table class="admin-table">
+                <thead>
+                    <th class="table-title">Nom de la figure</th>
+                    <th class="table-title">Action</th>
+                </thead>
+                <tbody>
+                    {% for trick in tricks %}
+                            <tr>
+                                <td>
+                                    <a class="trick-name"href="{{ path('trick_show', {'id': trick.id}) }}">{{ trick.name }}</a>
+                                </td>
+                                <td>
+                                    <a href="{{ path('edit_trick', {'id': trick.id}) }}"><i class="fas fa-pen"></i></a>
+
+                                    <a href="{{ path('delete_trick', {'id': trick.id}) }}"
+                                       onclick="return confirm('Êtes vous sur de vouloir supprimer cet article ?');">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <br>
+    </div>
+
+</section>
+
+{% endblock %}

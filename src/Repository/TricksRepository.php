@@ -40,6 +40,15 @@ class TricksRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+    public function getAllTricksByCreationDate()
+    {
+
+        return $this->createQueryBuilder('t')
+            ->orderBy('t.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 
     /*
     public function findOneBySomeField($value): ?Trick

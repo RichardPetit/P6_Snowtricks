@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/admin/tricks/{id}/delete", name="delete_trick", methods={"POST"})
+ * @Route("/admin/tricks/{id}/delete", name="delete_trick", methods={"GET", "POST"})
  * @param Trick $trick
  * @param EntityManagerInterface $em
  * @return Response

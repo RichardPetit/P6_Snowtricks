@@ -23,6 +23,7 @@
                 </thead>
                 <tbody>
                     {% for trick in tricks %}
+
                             <tr>
                                 <td>
                                     <a class="trick-name"href="{{ path('trick_show', {'id': trick.id}) }}">{{ trick.name }}</a>
@@ -44,6 +45,7 @@
             </table>
 
         </div>
+        {{ include('components/pagination/pagination.html.twig') }}
 
         <br>
     </div>

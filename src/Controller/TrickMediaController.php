@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/media/trick/{id}", name="media_trick")
  */
-class MediaTrickController extends AbstractController
+class TrickMediaController extends AbstractController
 {
     /**
      * @param Request $request

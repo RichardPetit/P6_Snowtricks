@@ -15,11 +15,14 @@ class HomeController extends AbstractController
 {
     public function __invoke(TricksRepository $tricksRepository, Request $request): Response
     {
-        $page = $request->get('p') !== null ? (int) $request->get('p') : 1;
+        $page = $request->get('page') !== null ? (int) $request->get('page') : 1;
 
         $tricks = $tricksRepository->getTricksByCreationDate($page);
         return $this->render('tricks/index.html.twig', [
             'tricks' => $tricks,
+            'nbPages'   => $tricksRepository->getNbOfPages(),
+            'currentPage' => $page,
+            'url' => 'home'
         ]);
     }
 }

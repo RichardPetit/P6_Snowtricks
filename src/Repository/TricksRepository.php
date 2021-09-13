@@ -12,8 +12,11 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Trick[]    findAll()
  * @method Trick[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
+
 class TricksRepository extends ServiceEntityRepository
 {
+    public const NB_PER_PAGE = 10;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Trick::class);
@@ -29,7 +32,7 @@ class TricksRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    public function getTricksByCreationDate(int $page = 1 , int $nbResults = 10)
+    public function getTricksByCreationDate(int $page = 1 , int $nbResults = self::NB_PER_PAGE)
     {
         $offset = ($page -1) * $nbResults;
         return $this->createQueryBuilder('t')
@@ -40,14 +43,21 @@ class TricksRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    public function getAllTricksByCreationDate()
-    {
 
+    public function getTotalNumberOfTricks() : int
+    {
         return $this->createQueryBuilder('t')
-            ->orderBy('t.createdAt', 'DESC')
-            ->getQuery()
-            ->getResult()
-            ;
+            ->select('count(t.id)')
+            ->getQuery()->getSingleScalarResult();
+    }
+
+    public function getNbOfPages() : int
+    {
+        $totalCount = $this->getTotalNumberOfTricks();
+        if ($totalCount <= self::NB_PER_PAGE) {
+            return 1;
+        }
+        return $totalCount % self::NB_PER_PAGE === 0 ? $totalCount / self::NB_PER_PAGE : ceil($totalCount / self::NB_PER_PAGE);
     }
 
     /*

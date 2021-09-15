@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des utilisateurs{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+    {# {{ encore_entry_link_tags('app') }} #}
+
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="example-wrapper">
+        <h1>Liste des utilisateurs</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Adresse email</th>
+                <th scope="col">Administrateur</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <th>{{ user.id }}</th>
+                    <th>{{ user.email }}</th>
+                    <th>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <p><i class="fa fa-check check"></i></p>
+                        {% else %}
+                            <p><i class="fa fa-times cross"></i></p>
+                        {% endif %}
+                    </th>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+{% endblock %}

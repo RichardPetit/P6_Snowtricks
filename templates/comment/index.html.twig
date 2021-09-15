@@ -14,6 +14,8 @@
 <div class="example-wrapper">
     <h1>Liste des commentaires</h1>
 
+    <h2>{{ trick.name }}</h2>
+
 
     <section class="tricks">
         <div class="container">
@@ -25,7 +27,6 @@
                             <div class="trick-content">
                                 <p>Auteur : {{ comment.user.email }}</p>
                                 <p>Commentaire : {{ comment.content }}</p>
-                                <p>Figure : {{ comment.trick.name }}</p>
                             </div>
                             <div class="metadata">Créée le {{ comment.createdAt | date ('d/m/Y')}} à {{ comment.createdAt | date ('H:i')}}</div>
                             <a href=""><i class="fas fa-pen"></i></a>

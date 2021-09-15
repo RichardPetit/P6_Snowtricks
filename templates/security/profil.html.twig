@@ -12,11 +12,16 @@
 
         <p> Mon adresse email : {{ app.user.email }} </p>
         <p>Role :
-        {% if app.user.roles == ["ROLE_ADMIN"] %}
-            Admin
-            {% else %}
-            Utilisateur
+{#        {% if app.user.roles == ["ROLE_ADMIN"] %}#}
+{#            Admin#}
+{#            {% else %}#}
+{#            Utilisateur#}
 
+{#        {% endif %}#}
+            {% if is_granted('ROLE_ADMIN') %}
+        Administateur
+        {% else %}
+            Contributeur
         {% endif %}
         </p>
     </div>

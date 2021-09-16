@@ -7,7 +7,7 @@
         <ul class="pagination">
             {% if currentPage != 1 %}
                 <li>
-                    <a href="{{ path(url, { 'page': 1 }) }}">First</a>
+                    <a href="{{ path(url, { 'page': 1 }) }}">Première</a>
                 </li>
             {% endif %}
             {% for i in 1..nbPages %}
@@ -25,7 +25,7 @@
             {% endfor %}
             {% if currentPage != nbPages %}
                 <li>
-                    <a href="{{ path(url, { 'page': nbPages }) }}">Last</a>
+                    <a href="{{ path(url, { 'page': nbPages }) }}">Dernière</a>
                 </li>
             {% endif %}
         </ul>

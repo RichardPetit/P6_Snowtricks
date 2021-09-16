@@ -11,11 +11,11 @@
 {% endblock %}
 
 {% block body %}
-    <h2>Administration des figures</h2>
+    <h2 class="m-4">Administration des figures</h2>
     <a href="{{ path('trick_create') }}">
         <button type="submit" class="btn btn-success float-right">Nouvelle figure!</button>
     </a>
-
+    <br><br><br>
     <section class="tricks">
         <div class="container">
             <div class="row justify-content-around">
@@ -36,9 +36,9 @@
                                    href="{{ path('trick_show', {'id': trick.id}) }}">{{ trick.name }}</a>
                             </td>
                             <td>
-                                <a href="{{ path('edit_trick', {'id': trick.id}) }}"><i class="fas fa-pen"></i></a>
+                                <a href="{{ path('edit_trick', {'id': trick.id}) }}" title="Éditer"><i class="fas fa-pen"></i></a>
 
-                                <a href="{{ path('delete_trick', {'id': trick.id}) }}"
+                                <a href="{{ path('delete_trick', {'id': trick.id}) }}" title="Supprimer"
                                    onclick="return confirm('Êtes vous sur de vouloir supprimer cet article ?');">
                                     <i class="fas fa-trash-alt"></i>
                                 </a>

@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Trick;
+use App\Entity\TrickMedia;
 use App\Form\CommentType;
 use App\Repository\CommentRepository;
+use App\Repository\TrickMediaRepository;
 use App\Repository\TricksRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,11 +22,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class ShowTrickController extends AbstractController
 {
 
-    public function __invoke(CommentRepository $commentRepository, TricksRepository $tricksRepository, int $id, Request $request, EntityManagerInterface $em): Response
+    public function __invoke(CommentRepository $commentRepository, TrickMediaRepository $mediaRepository, TricksRepository $tricksRepository, int $id, Request $request, EntityManagerInterface $em): Response
     {
 
         $trick = $this->getTrick($tricksRepository, $id);
 //        $comments = $commentRepository->getCommentsForArticle($id);
+        $media = $this->getMedia($id);
         if ($trick === null) {
             return $this->redirectToRoute('home');
         }
@@ -46,7 +49,7 @@ class ShowTrickController extends AbstractController
 //        return $this->renderTrickForm($trick);
         return $this->render('show/index.html.twig', [
             'trick' => $trick,
-//            'media' =>$media,
+            'media' =>$media,
             'formComment' => $commentForm->createView( )
         ]);
     }
@@ -54,6 +57,11 @@ class ShowTrickController extends AbstractController
     private function getTrick(TricksRepository $tricksRepository, int $id): ?Trick
     {
         return $tricksRepository->find($id);
+    }
+
+    private function getMedia(TrickMediaRepository $trickMediaRepository, int $media_id): ?TrickMedia
+    {
+        return $trickMediaRepository->findBy($media_id);
     }
 
 

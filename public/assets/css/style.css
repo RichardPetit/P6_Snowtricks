@@ -85,6 +85,10 @@ h1.h3{
     border-radius: 4px;
 }
 
+.pagination li{
+    margin: 0 2px 0 2px;
+}
+
 /* Admin */
 
 thead,

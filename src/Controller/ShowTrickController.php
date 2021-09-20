@@ -17,17 +17,16 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
- * @Route("/trick/show/{id}", name="trick_show")
+ * @Route("/tricks/{slug}", name="trick_show")
  */
 class ShowTrickController extends AbstractController
 {
 
-    public function __invoke(CommentRepository $commentRepository, TrickMediaRepository $mediaRepository, TricksRepository $tricksRepository, int $id, Request $request, EntityManagerInterface $em): Response
+    public function __invoke(CommentRepository $commentRepository, TrickMediaRepository $mediaRepository, Request $request, EntityManagerInterface $em, Trick $trick = null): Response
     {
-
-        $trick = $this->getTrick($tricksRepository, $id);
+        
 //        $comments = $commentRepository->getCommentsForArticle($id);
-        $media = $this->getMedia($id);
+//        $media = $this->getMedia($id);
         if ($trick === null) {
             return $this->redirectToRoute('home');
         }
@@ -49,7 +48,7 @@ class ShowTrickController extends AbstractController
 //        return $this->renderTrickForm($trick);
         return $this->render('show/index.html.twig', [
             'trick' => $trick,
-            'media' =>$media,
+//            'media' =>$media,
             'formComment' => $commentForm->createView( )
         ]);
     }

@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Comment;
+use App\Entity\Trick;
 use App\Repository\CommentRepository;
 use App\Repository\TricksRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,25 +13,22 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/admin/comments-list/{id}", name="comment")
+ * @Route("/admin/tricks/{id}/comments", name="comments_list")
  */
 
 class CommentController extends AbstractController
 {
 
-    public function __invoke(CommentRepository $commentRepository, TricksRepository $tricksRepository, int $id, Request $request, EntityManagerInterface $em): Response
+    public function __invoke(Request $request, EntityManagerInterface $em, Trick $trick = null): Response
     {
-        $trick = $tricksRepository->find($id);
-        $comments = $this->getComments($commentRepository, $id);
         if ($trick === null){
             return $this->redirectToRoute('admin_home');
         }
 
 
         return $this->render('comment/index.html.twig', [
-            'comments' => $comments,
+            'comments' => $trick->getComments(),
             'trick' => $trick
-
         ]);
     }
 

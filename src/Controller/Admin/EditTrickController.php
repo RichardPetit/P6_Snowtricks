@@ -40,7 +40,7 @@ class EditTrickController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             $this->updateTrick($trick, $em);
 
-            return $this->redirectToRoute('trick_show', ['id' => $trick->getId()]);
+            return $this->redirectToRoute('trick_show', ['slug' => $trick->getSlug()]);
 
         }
 
@@ -57,6 +57,7 @@ class EditTrickController extends AbstractController
 
     private function updateTrick(Trick $trick, EntityManagerInterface $em)
     {
+        $trick->generateSlug();
         $em->persist($trick);
         $em->flush();
     }

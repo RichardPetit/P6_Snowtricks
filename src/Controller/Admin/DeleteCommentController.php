@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/admin/comments/{id}/delete", name="delete_comment", methods={"GET", "POST"})
+ * @Route("/admin/comments/{id}/delete", name="delete_comment", methods={"GET"})
  * @param Comment $comment
  * @param EntityManagerInterface $em
  * @return Response

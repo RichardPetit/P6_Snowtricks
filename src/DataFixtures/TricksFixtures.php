@@ -14,7 +14,9 @@ class TricksFixtures extends Fixture
             $trick = new Trick();
             $trick->setName("Nom de la figure $i")
                 ->setDescription("<p>Description de la figure $i</p>")
-                ->setCreatedAt(new \DateTimeImmutable());
+                ->setCreatedAt(new \DateTimeImmutable())
+                ->generateSlug();
+
 
             $manager->persist($trick);
         }

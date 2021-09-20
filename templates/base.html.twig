@@ -35,23 +35,17 @@
                     </li>
 
 
-
-
-
-
                     {% if app.user %}
                         <li class="nav-item nav-link">{{ app.user.email }}</li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('profil') }}"> Mon profil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('admin_home') }}"> Administrer</a>
-                        </li>
+
                         {% if is_granted('ROLE_ADMIN') %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_logout') }}"> Me déconnecter</a>
+                                <a class="nav-link" href="{{ path('admin_home') }}"> Administrer</a>
                             </li>
                         {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_logout') }}"> Me déconnecter</a>
+                        </li>
 
                     {% else %}
                         <li class="nav-item">

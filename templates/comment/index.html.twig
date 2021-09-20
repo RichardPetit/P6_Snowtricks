@@ -29,8 +29,7 @@
                                 <p>Commentaire : {{ comment.content }}</p>
                             </div>
                             <div class="metadata">Créée le {{ comment.createdAt | date ('d/m/Y')}} à {{ comment.createdAt | date ('H:i')}}</div>
-                            <a href=""><i class="fas fa-pen"></i></a>
-                            <a href=""
+                            <a href="{{ path('delete_comment', {'id': comment.id}) }}"
                                onclick="return confirm('Êtes vous sur de vouloir supprimer ce commentaire ?');">
                                 <i class="fas fa-trash-alt"></i>
                             </a>

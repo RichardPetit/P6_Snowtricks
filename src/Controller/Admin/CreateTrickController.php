@@ -25,6 +25,7 @@ class CreateTrickController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
+            $trick->generateSlug();
             $em->persist($trick);
             $em->flush();
 

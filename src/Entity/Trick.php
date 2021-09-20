@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\TricksRepository;
+use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -40,6 +41,11 @@ class Trick
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="trick", orphanRemoval=true)
      */
     private $comments;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $slug;
 
 
     public function __construct()
@@ -115,6 +121,28 @@ class Trick
                 $comment->setTrick(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(?string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function generateSlug(): self
+    {
+        $name = $this->getName();
+        $slugify = new Slugify();
+        $slug = $slugify->slugify($name);
+        $this->setSlug($slug);
 
         return $this;
     }

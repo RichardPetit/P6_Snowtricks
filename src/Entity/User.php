@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use function PHPUnit\Framework\stringContains;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -42,6 +43,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @Assert\EqualTo(propertyPath="password", message="Vos mot de passe doivent être identiques")
      */
     private $confirm_password;
+
+
+    public function isAdmin(): bool
+    {
+        $roles = $this->getRoles();
+        return in_array("ROLE_ADMIN", $roles);
+    }
 
 
     public function getId(): ?int

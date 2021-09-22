@@ -28,7 +28,7 @@
                 <tr>
                     <th>{{ comment.user.email }}</th>
                     <th>{{ comment.content }}</th>
-                    <th>{{ comment.createdAt | date ('d/m/Y') }} à {{ comment.createdAt | date ('H:i') }}</th>
+                    <th>{{ comment.createdAt | date ('d/m/Y') }}</th>
 
                     <th>
                         <a href="{{ path('delete_comment', {'id': comment.id}) }}"

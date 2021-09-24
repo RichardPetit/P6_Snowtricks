@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\TrickMediaRepository;
 use Doctrine\ORM\Mapping as ORM;
+use RicardoFiorani\Matcher\VideoServiceMatcher;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
@@ -76,5 +77,13 @@ class TrickMedia
         $this->trick = $trick;
 
         return $this;
+    }
+
+    public function getEmbeddedUrlForVideo(): string
+    {
+        $vsm = new VideoServiceMatcher();
+        $video = $vsm->parse($this->getLink());
+        return $video->getEmbedUrl();
+
     }
 }

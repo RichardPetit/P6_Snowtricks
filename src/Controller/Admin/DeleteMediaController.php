@@ -20,8 +20,12 @@ class DeleteMediaController extends AbstractController
     public function __invoke(EntityManagerInterface $em, TrickMedia $media): Response
     {
         if ($media !==null){
+            $trick = $media->getTrick();
             $em->remove($media);
             $em->flush();
+
+            return $this->redirectToRoute('edit_trick', ['id'=> $trick->getId()]);
+
         }
         return $this->redirectToRoute('admin_home');
 

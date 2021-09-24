@@ -47,6 +47,11 @@ class Trick
      */
     private $slug;
 
+    /**
+     * @ORM\OneToMany(targetEntity=TrickMedia::class, mappedBy="trick")
+     */
+    private $medias;
+
 
     public function __construct()
     {
@@ -145,6 +150,14 @@ class Trick
         $this->setSlug($slug);
 
         return $this;
+    }
+
+    /**
+     * @return Collection|TrickMedia[]
+     */
+    public function getMedias(): Collection
+    {
+        return $this->medias;
     }
 
 }

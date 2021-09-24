@@ -1,4 +1,7 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+{% endblock %}
 
 {% block title %}Modification figure{% endblock %}
 
@@ -17,8 +20,54 @@
 
     {{ form_end(formTrick) }}
     <br>
-    <a href="#">Ajouter des Illustrations (images, vidéos)</a>
-{#    <a href="{{ path('media_trick', {'id': trick.id}) }}"><i class="fas fa-pen"></i></a>#}
+
+    <h1>Gestion des medias</h1>
+
+    <h5>Ajouter</h5>
+
+    {{ form_start(formMedia) }}
+    {#    <label for="">Nom</label>#}
+    {{ form_row(formMedia.type, {'attr': {'placeholder': "Nom de la figure"}}) }}
+    {#    <label for="">Description</label>#}
+    {{ form_row(formMedia.link) }}
+    <button type="submit" class="btn btn-success">Enregister </button>
+
+
+    {{ form_end(formMedia) }}
+    <br>
+    <h5>Supprimer</h5>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Média</th>
+            <th scope="col">Supprimer</th>
+        </tr>
+        </thead>
+        <tbody>
+
+            {% for media in trick.getMedias() %}
+            <tr>
+                <th>
+                    {% if media.type == 'image' %}
+                        <img width="300" src="{{ media.link }}" alt="image de la figure"> &nbsp;
+                    {% else %}
+                        <iframe width="300" src="{{ media.getEmbeddedUrlForVideo() }}"></iframe>
+                    {% endif %}
+                </th>
+                <th>
+                    <a href="{{ path('delete_media', {'id': media.id}) }}"
+                       onclick="return confirm('Êtes vous sur de vouloir supprimer ce média ?');">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </th>
+            </tr>
+            {% endfor %}
+
+
+
+        </tbody>
+    </table>
+
 
 
 

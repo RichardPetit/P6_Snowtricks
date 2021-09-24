@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8df4873f9cf0a1aa0a90148ecadd4219",
+    "content-hash": "e1fe1b20241989249ace63c03764e128",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -1850,6 +1850,51 @@
                 "psr-3"
             ],
             "time": "2021-05-03T11:20:27+00:00"
+        },
+        {
+            "name": "ricardofiorani/php-video-url-parser",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ricardofiorani/php-video-url-parser.git",
+                "reference": "3c98f3ade90f9c4eb66717e5cf106763b9930d84"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ricardofiorani/php-video-url-parser/zipball/3c98f3ade90f9c4eb66717e5cf106763b9930d84",
+                "reference": "3c98f3ade90f9c4eb66717e5cf106763b9930d84",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": ">= 1.0",
+                "phpunit/phpunit": "^4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "RicardoFiorani\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ricardo Fiorani",
+                    "email": "ricardo.fiorani@gmail.com"
+                }
+            ],
+            "description": "A Simple and efficient PHP Video URL Parser that gives you thumbnails and embed codes for various services as Youtube, Vimeo, DailyMotion and Facebook",
+            "support": {
+                "issues": "https://github.com/ricardofiorani/php-video-url-parser/issues",
+                "source": "https://github.com/ricardofiorani/php-video-url-parser/tree/v1.0.2"
+            },
+            "abandoned": "ricardofiorani/oembed",
+            "time": "2019-07-28T14:12:45+00:00"
         },
         {
             "name": "sensio/framework-extra-bundle",

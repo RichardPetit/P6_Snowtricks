@@ -24,6 +24,6 @@ class DeleteTrickController extends AbstractController
             $em->flush();
         }
 
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('admin_home');
     }
 }

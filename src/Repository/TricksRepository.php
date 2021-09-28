@@ -60,6 +60,11 @@ class TricksRepository extends ServiceEntityRepository
         return $totalCount % self::NB_PER_PAGE === 0 ? $totalCount / self::NB_PER_PAGE : ceil($totalCount / self::NB_PER_PAGE);
     }
 
+    public function exists(string $name): bool
+    {
+        return false;
+    }
+
     /*
     public function findOneBySomeField($value): ?Trick
     {

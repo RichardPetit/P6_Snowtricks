@@ -22,14 +22,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class ShowTrickController extends AbstractController
 {
 
-    public function __invoke(CommentRepository $commentRepository, TrickMediaRepository $mediaRepository, Request $request, EntityManagerInterface $em, Trick $trick = null): Response
+    public function __invoke(CommentRepository $commentRepository, TrickMediaRepository $mediaRepository, Request $request,
+                             EntityManagerInterface $em, Trick $trick = null): Response
     {
         
-//        $comments = $commentRepository->getCommentsForArticle($id);
 //        $media = $this->getMedia($id);
         if ($trick === null) {
             return $this->redirectToRoute('home');
         }
+
 
         // Partie Commentaires
         $comment = new Comment();
@@ -45,10 +46,9 @@ class ShowTrickController extends AbstractController
         }
 
 
-//        return $this->renderTrickForm($trick);
         return $this->render('show/index.html.twig', [
             'trick' => $trick,
-//            'media' =>$media,
+            'medias' => $trick->getMedias(),
             'formComment' => $commentForm->createView( )
         ]);
     }

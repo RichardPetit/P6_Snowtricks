@@ -91,6 +91,7 @@ h1.h3{
 
 .pagination li{
     margin: 0 2px 0 2px;
+    padding: 2rem 0 0 0;
 }
 
 /* Admin */
@@ -130,4 +131,20 @@ th {
 
 .table thead th{
     color: #3386d7;
+}
+
+/* Carousel */
+
+#carouselExample {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+}
+.bg-black{
+    background-color: black;
 }

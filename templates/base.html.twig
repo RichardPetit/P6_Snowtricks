@@ -62,11 +62,23 @@
 
 
     <div class="container">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
         {% block body %}{% endblock %}
     </div>
     <br>
     <footer class=" text-light bg-primary d-flex justify-content-center">
         Copyright ©
+        <br>
+        Richard PETIT
     </footer>
     </body>
 </html>

@@ -14,6 +14,9 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class CommentRepository extends ServiceEntityRepository
 {
+    public const NB_PER_PAGE = 10;
+
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Comment::class);
@@ -24,16 +27,34 @@ class CommentRepository extends ServiceEntityRepository
      * @param int $id
      */
 
-    public function getCommentsForArticle(int $id): ?Comment
+    public function getCommentsForArticle(int $id, int $page = 1, int $nmResults = self::NB_PER_PAGE): ?Comment
     {
+        $offset = ($page -1) * $nmResults;
         return $this->createQueryBuilder('c')
             ->andWhere('c.active = 1')
             ->setParameter('id', $id)
             ->orderBy('c.id', 'DESC')
-            ->setMaxResults(10)
+            ->setMaxResults($nmResults)
+            ->setFirstResult($offset)
             ->getQuery()
             ->getResult()
             ;
+    }
+
+    public function getTotalNumberOfcommentsForATrick() : int
+    {
+        return $this->createQueryBuilder('c')
+            ->select('count(c.id)')
+            ->getQuery()->getSingleScalarResult();
+    }
+
+    public function getNbOfPages() : int
+    {
+        $totalCount = $this->getTotalNumberOfcommentsForATrick();
+        if ($totalCount <= self::NB_PER_PAGE) {
+            return 1;
+        }
+        return $totalCount % self::NB_PER_PAGE === 0 ? $totalCount / self::NB_PER_PAGE : ceil($totalCount / self::NB_PER_PAGE);
     }
 
     public function changeToActiveStatusForComment(int $id)

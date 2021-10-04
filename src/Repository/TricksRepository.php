@@ -15,7 +15,7 @@ use Doctrine\Persistence\ManagerRegistry;
 
 class TricksRepository extends ServiceEntityRepository
 {
-    public const NB_PER_PAGE = 10;
+    public const NB_PER_PAGE = 12;
 
     public function __construct(ManagerRegistry $registry)
     {

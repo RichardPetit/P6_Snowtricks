@@ -16,6 +16,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Trick
 {
+//    public const TRICK_CATEGORY = ['Grab', 'Rotation', 'Flip', 'Slide', 'One-foot', 'Old-school'];
+
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -53,6 +56,11 @@ class Trick
      * @ORM\OneToMany(targetEntity=TrickMedia::class, mappedBy="trick")
      */
     private $medias;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $category;
 
 
     public function __construct()
@@ -160,6 +168,18 @@ class Trick
     public function getMedias(): Collection
     {
         return $this->medias;
+    }
+
+    public function getCategory(): ?string
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?string $category): self
+    {
+        $this->category = $category;
+
+        return $this;
     }
 
 }

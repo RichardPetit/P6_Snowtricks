@@ -25,8 +25,8 @@
 
     <article>
         <h2>{{ trick.name }}</h2>
+        <h5>Catégorie : {{ trick.category }} </h5>
         <div class="metadata">Fiche créée le {{ trick.createdAt | date ('d/m/Y')}} à {{ trick.createdAt | date ('H:i')}}</div>
-        <div class="metadata">Catégorie de la figue : nom de la catérogie </div>
         <div class="content">
             <div class="row justify-content-center">
                 <div class="col-6 align-self-center ">
@@ -36,10 +36,10 @@
                     {% for key, media in trick.getMedias() %}
                     <div class="carousel-item {{ key == 0 ? 'active' : '' }}">
                         {% if media.type == 'image' %}
-                            <img src="{{ media.link }}" alt="image de la figure"> &nbsp;
+                            <img height="380px" src="{{ media.link }}" alt="image de la figure"> &nbsp;
                         {% else %}
                             <div class="row justify-content-center" style="background-color: black;">
-                                <iframe width="70%" height="382px" src="{{ media.getEmbeddedUrlForVideo() }}"></iframe>
+                                <iframe width="70%" height="380px" src="{{ media.getEmbeddedUrlForVideo() }}"></iframe>
                             </div>
                         {% endif %}
                     </div>
@@ -60,7 +60,6 @@
             </div>
 
             </div>
-
             <p>{{ trick.description | raw}}</p>
         </div>
 

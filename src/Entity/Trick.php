@@ -16,8 +16,14 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Trick
 {
-//    public const TRICK_CATEGORY = ['Grab', 'Rotation', 'Flip', 'Slide', 'One-foot', 'Old-school'];
-
+    public const TRICK_CATEGORY = [
+                    'Grab'       => "grab",
+                    'Rotation'   => "rotation",
+                    'Flip'       => "flip",
+                    'Slide'      => "slide",
+                    'One-foot'   => "one-foot",
+                    'Old-school' => "old-school",
+                ];
 
     /**
      * @ORM\Id
@@ -59,6 +65,7 @@ class Trick
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Choice(choices=Trick::TRICK_CATEGORY, message="Choisissez une valeure valide.")
      */
     private $category;
 
@@ -180,6 +187,18 @@ class Trick
         $this->category = $category;
 
         return $this;
+    }
+
+    public function getMainImage(): string
+    {
+        $medias = $this->getMedias();
+        foreach ($medias as $media) {
+            if ($media->isImage()) {
+                return $media->getLink();
+            }
+        }
+
+        return TrickMedia::DEFAULT_IMAGE;
     }
 
 }

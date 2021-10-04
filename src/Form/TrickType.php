@@ -15,16 +15,11 @@ class TrickType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('category', ChoiceType::class, [
-                'choices' =>[
-                    'Grab'       => "Grab",
-                    'Rotation'   => "Rotation",
-                    'Flip'       => "Flip",
-                    'Slide'      => "Slide",
-                    'One-foot'   => "One-foot",
-                    'Old-school' => "Old-school",
-                ]])
-        ;
+            ->add('category', ChoiceType::class,
+                [
+                    'choices' => Trick::TRICK_CATEGORY
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -2,6 +2,10 @@ body {
     background: white;
 }
 
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: lightblue;
+}
+
 .catchphrase{
     font-size: 2rem;
     height: 20rem;
@@ -83,4 +87,64 @@ h1.h3{
     background-image: none;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+.pagination li{
+    margin: 0 2px 0 2px;
+    padding: 2rem 0 0 0;
+}
+
+/* Admin */
+
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+}
+
+.admin-table {
+    caption-side: bottom;
+    border-collapse: collapse;
+}
+.table-title {
+    margin-bottom: 0.5rem;
+}
+
+.fa-trash-alt, .fa-pen {
+    transition: transform .3s;
+    margin: 0 5px 0 0;
+}
+
+.fa-trash-alt:hover {
+    color: #c0001a;
+    transform: scale(1.1);
+}
+.fa-pen:hover {
+    color: #3386d7;
+    transform: scale(1.1);
+}
+
+.table thead th{
+    color: #3386d7;
+}
+
+/* Carousel */
+
+#carouselExample {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+}
+.bg-black{
+    background-color: black;
 }

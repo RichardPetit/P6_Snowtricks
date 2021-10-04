@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Trick;
 use Doctrine\ORM\EntityManagerInterface;
@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/delete/trick/{id}", name="delete_trick")
+ * @Route("/admin/tricks/{id}/delete", name="delete_trick", methods={"GET"})
  * @param Trick $trick
  * @param EntityManagerInterface $em
  * @return Response
@@ -24,6 +24,6 @@ class DeleteTrickController extends AbstractController
             $em->flush();
         }
 
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('admin_home');
     }
 }

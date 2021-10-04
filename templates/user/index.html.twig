@@ -1,0 +1,52 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Liste des utilisateurs{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+    {# {{ encore_entry_link_tags('app') }} #}
+
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="example-wrapper">
+        <h1>Liste des utilisateurs</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Adresse email</th>
+                <th scope="col">Administrateur</th>
+                <th scope="col">Suppression</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <th>{{ user.id }}</th>
+                    <th>{{ user.email }}</th>
+                    <th>
+                        {% if user.isAdmin() %}
+                            <p><i title="Administrateur" class="fa fa-check check"></i></p>
+                        {% else %}
+                            <p><i title="Membre" class="fa fa-times cross"></i></p>
+                        {% endif %}
+                    </th>
+                    <th>
+                        <a href="{{ path('delete_user', {'id': user.id}) }}" title="Supprimer l'utilisateur"
+                           onclick="return confirm('Êtes vous sur de vouloir supprimer ce membre ?');">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </th>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+{% endblock %}

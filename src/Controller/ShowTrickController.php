@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Trick;
+use App\Entity\TrickMedia;
 use App\Form\CommentType;
 use App\Repository\CommentRepository;
+use App\Repository\TrickMediaRepository;
 use App\Repository\TricksRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,19 +17,20 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
- * @Route("/trick/show/{id}", name="trick_show")
+ * @Route("/tricks/{slug}", name="trick_show")
  */
 class ShowTrickController extends AbstractController
 {
 
-    public function __invoke(CommentRepository $commentRepository, TricksRepository $tricksRepository, int $id, Request $request, EntityManagerInterface $em): Response
+    public function __invoke(CommentRepository $commentRepository, TrickMediaRepository $mediaRepository, Request $request,
+                             EntityManagerInterface $em, Trick $trick = null): Response
     {
-
-        $trick = $this->getTrick($tricksRepository, $id);
-//        $comments = $commentRepository->getCommentsForArticle($id);
+        
+//        $media = $this->getMedia($id);
         if ($trick === null) {
             return $this->redirectToRoute('home');
         }
+
 
         // Partie Commentaires
         $comment = new Comment();
@@ -43,9 +46,9 @@ class ShowTrickController extends AbstractController
         }
 
 
-//        return $this->renderTrickForm($trick);
         return $this->render('show/index.html.twig', [
             'trick' => $trick,
+            'medias' => $trick->getMedias(),
             'formComment' => $commentForm->createView( )
         ]);
     }
@@ -53,6 +56,11 @@ class ShowTrickController extends AbstractController
     private function getTrick(TricksRepository $tricksRepository, int $id): ?Trick
     {
         return $tricksRepository->find($id);
+    }
+
+    private function getMedia(TrickMediaRepository $trickMediaRepository, int $media_id): ?TrickMedia
+    {
+        return $trickMediaRepository->findBy($media_id);
     }
 
 

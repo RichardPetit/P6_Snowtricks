@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Trick;
 use App\Form\TrickType;
+use App\Repository\TricksRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,12 +13,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
- * @Route("/trick/create", name="trick_create")
+ * @Route("/admin/tricks/create", name="trick_create")
  */
 class CreateTrickController extends AbstractController
 {
 
-    public function __invoke(Request $request, EntityManagerInterface $em): Response
+    public function __invoke(Request $request, EntityManagerInterface $em, TricksRepository $tricksRepository): Response
     {
         $trick = new Trick();
 
@@ -25,10 +26,18 @@ class CreateTrickController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
+//            if ($tricksRepository->exists($trick->getName())) {
+//                $this->addFlash('error', 'Nom de figure déjà utilisé.');
+//            }
+
+            $trick->generateSlug();
             $em->persist($trick);
             $em->flush();
 
-            return $this->redirectToRoute('home');
+
+            $this->addFlash('success', 'La figure a bien été ajoutée.');
+
+            return $this->redirectToRoute('admin_home');
         }
 
         return $this->render('create/index.html.twig', [

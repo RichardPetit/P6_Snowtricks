@@ -3,13 +3,16 @@
 namespace App\Entity;
 
 use App\Repository\TricksRepository;
+use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=TricksRepository::class)
+ * @UniqueEntity(fields={"name"}, message="Ce nom est déjà utilisé")
  */
 class Trick
 {
@@ -21,7 +24,7 @@ class Trick
     private ?int $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\Length(min=4, minMessage="Le nom doit faire 4 caractères minimum.")
      */
     private ?string $name;
@@ -40,6 +43,16 @@ class Trick
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="trick", orphanRemoval=true)
      */
     private $comments;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $slug;
+
+    /**
+     * @ORM\OneToMany(targetEntity=TrickMedia::class, mappedBy="trick")
+     */
+    private $medias;
 
 
     public function __construct()
@@ -117,6 +130,36 @@ class Trick
         }
 
         return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(?string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function generateSlug(): self
+    {
+        $name = $this->getName();
+        $slugify = new Slugify();
+        $slug = $slugify->slugify($name);
+        $this->setSlug($slug);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|TrickMedia[]
+     */
+    public function getMedias(): Collection
+    {
+        return $this->medias;
     }
 
 }

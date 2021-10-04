@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Repository\TricksRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/", name="home", methods={"GET"})
+ * @Route("/admin", name="admin_home", methods={"GET"})
  */
 class HomeController extends AbstractController
 {
@@ -18,11 +18,11 @@ class HomeController extends AbstractController
         $page = $request->get('page') !== null ? (int) $request->get('page') : 1;
 
         $tricks = $tricksRepository->getTricksByCreationDate($page);
-        return $this->render('tricks/index.html.twig', [
+        return $this->render('tricks/index_admin.html.twig', [
             'tricks' => $tricks,
             'nbPages'   => $tricksRepository->getNbOfPages(),
             'currentPage' => $page,
-            'url' => 'home'
+            'url' => 'admin_home'
         ]);
     }
 }

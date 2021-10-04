@@ -20,13 +20,14 @@
         <div class="row justify-content-around">
             {% for trick in tricks %}
 
-                <div class="col-2.5">
+                <div class="col-xs-7 col-sm-6 col-md-3">
                     <div class="card card-trick">
 
-                        <img class="mini-picture" src="/img/BWk4bXVB.jpg" alt="">
+                        <img class="mini-picture" src="{{ trick.getMainImage() }}" alt="">
                         <div class="trick-content">
                             <a class="trick-name"href="{{ path('trick_show', {'slug': trick.slug}) }}">{{ trick.name }}</a>
                         </div>
+                        <p>{{ trick.getDisplayCategory() }}</p>
                         <div class="metadata">Créée le {{ trick.createdAt | date ('d/m/Y')}} à {{ trick.createdAt | date ('H:i')}}</div>
                     </div>
                 </div>

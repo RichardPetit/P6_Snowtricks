@@ -16,6 +16,24 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Trick
 {
+    public const TRICK_CATEGORY = [
+                    'Grab'       => "grab",
+                    'Rotation'   => "rotation",
+                    'Flip'       => "flip",
+                    'Slide'      => "slide",
+                    'One-foot'   => "one-foot",
+                    'Old-school' => "old-school",
+                ];
+
+    public const TRICK_CATEGORY_DISPLAY = [
+                    'grab'       => "Grab",
+                    'rotation'   => "Rotation",
+                    'flip'       => "Flip",
+                    'slide'      => "Slide",
+                    'one-foot'   => "One-foot",
+                    'old-school' => "Old-school",
+                ];
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -53,6 +71,12 @@ class Trick
      * @ORM\OneToMany(targetEntity=TrickMedia::class, mappedBy="trick")
      */
     private $medias;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Choice(choices=Trick::TRICK_CATEGORY, message="Choisissez une valeure valide.")
+     */
+    private $category;
 
 
     public function __construct()
@@ -161,5 +185,40 @@ class Trick
     {
         return $this->medias;
     }
+
+    public function getCategory(): ?string
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?string $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    public function getMainImage(): string
+    {
+        $medias = $this->getMedias();
+        foreach ($medias as $media) {
+            if ($media->isImage()) {
+                return $media->getLink();
+            }
+        }
+
+        return TrickMedia::DEFAULT_IMAGE;
+    }
+
+    public function getDisplayCategory(): string
+    {
+        $category = $this->getCategory();
+        if ($category === null) {
+            return '';
+        }
+        return self::TRICK_CATEGORY_DISPLAY[$category];
+
+    }
+
 
 }

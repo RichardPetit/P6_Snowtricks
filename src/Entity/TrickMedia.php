@@ -13,6 +13,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class TrickMedia
 {
+    private const TYPE_IMAGE = 'image';
+    private const TYPE_VIDEO = 'video';
+    public const DEFAULT_IMAGE = '/img/BWk4bXVB.jpg';
+
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -85,5 +90,15 @@ class TrickMedia
         $video = $vsm->parse($this->getLink());
         return $video->getEmbedUrl();
 
+    }
+
+    public function isImage(): bool
+    {
+        return $this->getType() === self::TYPE_IMAGE;
+    }
+
+    public function isVideo(): bool
+    {
+        return $this->getType() === self::TYPE_VIDEO;
     }
 }

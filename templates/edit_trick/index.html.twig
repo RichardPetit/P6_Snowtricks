@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+    <link rel=\"stylesheet\" href=\"/assets/css/style.css\">
+
 {% endblock %}
 
 {% block title %}Modification figure{% endblock %}
@@ -9,12 +11,16 @@
 
 {% block body %}
     <h1>Modifier une figure !</h1>
+    <p class="rouge"> je veux un fond rouge!!!!</p>
 
     {{ form_start(formTrick) }}
     {#    <label for="">Nom</label>#}
     {{ form_row(formTrick.name, {'attr': {'placeholder': "Nom de la figure"}}) }}
     {#    <label for="">Description</label>#}
     {{ form_row(formTrick.description) }}
+    <div class="form-control">
+    <div class="category-choice ">{{ form_row(formTrick.category) }}</div>
+    </div>
 
     <button type="submit" class="btn btn-success">Mettre à jour </button>
 
@@ -22,6 +28,8 @@
     <br>
 
     <h1>Gestion des medias</h1>
+
+    <p class="rouge"> je veux un fond rouge!!!!</p>
 
     <h5>Ajouter</h5>
 

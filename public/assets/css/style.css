@@ -21,6 +21,9 @@ body {
     -webkit-background-clip: text;
     color: transparent;
 }
+@media  (max-width: 893px) {
+
+}
 
 .mini-picture{
     width-max: 150px;
@@ -55,7 +58,7 @@ body {
 }
 .trick-name{
     width: 8rem;
-    height: 1rem;
+    height: 2rem;
     overflow: hidden;
 }
 
@@ -132,6 +135,17 @@ th {
 .table thead th{
     color: #3386d7;
 }
+
+.category-choice{
+    width: 100px;
+    display: flex;
+}
+
+
+.rouge{
+    background-color: red;
+}
+
 
 /* Carousel */
 

@@ -25,7 +25,7 @@
 
     <article>
         <h2>{{ trick.name }}</h2>
-        <h5>Catégorie : {{ trick.category }} </h5>
+        <h5>Catégorie : {{ trick.getDisplayCategory }} </h5>
         <div class="metadata">Fiche créée le {{ trick.createdAt | date ('d/m/Y')}} à {{ trick.createdAt | date ('H:i')}}</div>
         <div class="content">
             <div class="row justify-content-center">

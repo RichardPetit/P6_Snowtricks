@@ -140,16 +140,12 @@ th {
     width: 100px;
     display: flex;
 }
-select {
-    width: 100px;
-}
+
 
 .rouge{
     background-color: red;
 }
-.form-control{
-    background-color: green;
-}
+
 
 /* Carousel */
 

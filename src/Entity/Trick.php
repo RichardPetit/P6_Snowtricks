@@ -25,6 +25,15 @@ class Trick
                     'Old-school' => "old-school",
                 ];
 
+    public const TRICK_CATEGORY_DISPLAY = [
+                    'grab'       => "Grab",
+                    'rotation'   => "Rotation",
+                    'flip'       => "Flip",
+                    'slide'      => "Slide",
+                    'one-foot'   => "One-foot",
+                    'old-school' => "Old-school",
+                ];
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -200,5 +209,16 @@ class Trick
 
         return TrickMedia::DEFAULT_IMAGE;
     }
+
+    public function getDisplayCategory(): string
+    {
+        $category = $this->getCategory();
+        if ($category === null) {
+            return '';
+        }
+        return self::TRICK_CATEGORY_DISPLAY[$category];
+
+    }
+
 
 }

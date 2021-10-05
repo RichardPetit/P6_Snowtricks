@@ -14,6 +14,9 @@ use function PHPUnit\Framework\stringContains;
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    public const DEFAULT_PROFILE_PICTURE = '/img/default-profile-pic';
+//    public const DEFAULT_PROFILE_PICTURE = 'https://cdn.icon-icons.com/icons2/1769/PNG/512/4092564-about-mobile-ui-profile-ui-user-website_114033.png';
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -43,6 +46,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @Assert\EqualTo(propertyPath="password", message="Vos mot de passe doivent être identiques")
      */
     private $confirm_password;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $forename;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $picture;
 
 
     public function isAdmin(): bool
@@ -157,4 +175,50 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
+    public function getForename(): ?string
+    {
+        return $this->forename;
+    }
+
+    public function setForename(?string $forename): self
+    {
+        $this->forename = $forename;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?string $picture): self
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getProfilePicture()
+    {
+        $picture = $this->getPicture();
+        if (!empty($picture)) {
+            return $picture;
+        }
+        return User::DEFAULT_PROFILE_PICTURE;
+    }
+
 }

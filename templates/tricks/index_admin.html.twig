@@ -25,6 +25,7 @@
                     <thead>
                     <tr>
                         <th scope="col">Nom de la figure</th>
+                        <th scope="col">Catégorie</th>
                         <th scope="col">Commentaires</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -37,6 +38,9 @@
                             <td>
                                 <a class="trick-name"
                                    href="{{ path('trick_show', {'slug': trick.slug}) }}">{{ trick.name }}</a>
+                            </td>
+                            <td>
+                                <p> {{ trick.getDisplayCategory }} <p>
                             </td>
                             <td>
                                 <a href="{{ path('comments_list', {'id': trick.id}) }}"> Voir les commentaires</a>

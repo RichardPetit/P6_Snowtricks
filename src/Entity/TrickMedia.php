@@ -16,6 +16,10 @@ class TrickMedia
     private const TYPE_IMAGE = 'image';
     private const TYPE_VIDEO = 'video';
     public const DEFAULT_IMAGE = '/img/BWk4bXVB.jpg';
+    public const MEDIA_TYPE = [
+        'Image' => TrickMedia::TYPE_IMAGE,
+        'Video' => TrickMedia::TYPE_VIDEO,
+    ];
 
 
     /**

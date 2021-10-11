@@ -45,11 +45,5 @@ class CreateTrickController extends AbstractController
         ]);
     }
 
-    private function renderTrickCreationForm(): Response
-    {
-        return $this->render('create/index.html.twig', [
-            'formTrick' => $form->createView(),
-        ]);
-    }
 
 }

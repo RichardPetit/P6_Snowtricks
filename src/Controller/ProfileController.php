@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\ProfileEditType;
 use App\Form\RegistrationType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,19 +25,22 @@ class ProfileController extends AbstractController
      * @param $id
      * @return Response
      */
-    public function __invoke(Request $request, EntityManagerInterface  $em, User $user = null): Response
+    public function __invoke(Request $request, EntityManagerInterface  $em): Response
     {
+        $user = $this->getUser();
         if ($user === null){
             return $this->redirectToRoute('app_login');
         }
 
-        $form = $this->createForm(RegistrationType::class, $user);
+        $form = $this->createForm(ProfileEditType::class, $user);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
             $this->updateProfile($user, $em);
 
-            return $this->redirectToRoute('profile/index.html.twig');
+            $this->addFlash('success', 'Votre profil à bien été mis à jour.');
+
+            return $this->redirectToRoute('profile');
         }
 
         return $this->renderUserForm($form, $user);
@@ -45,7 +49,7 @@ class ProfileController extends AbstractController
     private function renderUserForm( FormInterface $form, User $user): Response
     {
         return $this->render('profile/index.html.twig', [
-            'formTrick' => $form->createView(),
+            'form' => $form->createView(),
             'user' => $user,
         ]);
     }

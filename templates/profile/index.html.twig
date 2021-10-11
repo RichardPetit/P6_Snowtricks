@@ -5,18 +5,22 @@
 {% block body %}
     <h1>Mon profil</h1>
 
-    <div class="block-main">
 
-        <img class="w-25 p-3" src="{{ app.user.getProfilePicture() }}" alt="">
+    <img class="w-25 p-3" src="{{ user.getProfilePicture() }}" alt="">
 
-        <p> Mon adresse email : {{ app.user.email }} </p>
-        <p>Role :
-            {% if is_granted('ROLE_ADMIN') %}
-                Administateur
-            {% else %}
-                Contributeur
-            {% endif %}
-        </p>
+    <div class="register-form"></div>
+
+
+    {{ form_start(form) }}
+
+    {{ form_row(form.forename, {'label': 'Prénom', 'attr': {'placeholder': 'Votre prénom...'}}) }}
+    {{ form_row(form.name, {'label': 'Nom', 'attr': {'placeholder': 'Votre nom...'}}) }}
+
+    {{ form_row(form.email, {'label': 'Adresse email', 'attr': {'placeholder': 'Adresse email...'}}) }}
+    {{ form_row(form.picture, {'label': 'Lien', 'attr': {'placeholder': 'URL de votre image'}}) }}
+    <button type="submit" class="btn btn-success">Valider</button>
+    {{ form_end(form) }}
     </div>
+
 
 {% endblock %}

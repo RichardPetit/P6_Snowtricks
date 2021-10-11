@@ -31,6 +31,10 @@ class RegisterController extends AbstractController
             $user->setPassword($passwordHasher->hashPassword($user,$user->getPassword()));
             $manager->persist($user);
             $manager->flush();
+
+            $this->addFlash('success', 'Votre compte a bien été créé. Vous pouvez maintenant vous connecter.');
+
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('security/registration.html.twig', [

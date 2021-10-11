@@ -15,10 +15,8 @@ class MediaType extends AbstractType
     {
         $builder
             ->add('type', ChoiceType::class, [
-                'choices' =>[
-                    'Image' => "image",
-                    'Vidéo' => 'video',
-                ]])
+                'choices' =>TrickMedia::MEDIA_TYPE
+            ])
             ->add('link', UrlType::class, ['label' => 'Lien'])
         ;
     }

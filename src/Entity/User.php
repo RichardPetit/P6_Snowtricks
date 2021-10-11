@@ -14,7 +14,7 @@ use function PHPUnit\Framework\stringContains;
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    public const DEFAULT_PROFILE_PICTURE = '/img/default-profile-pic';
+    public const DEFAULT_PROFILE_PICTURE = '/img/default-profile-pic.png';
 //    public const DEFAULT_PROFILE_PICTURE = 'https://cdn.icon-icons.com/icons2/1769/PNG/512/4092564-about-mobile-ui-profile-ui-user-website_114033.png';
 
     /**
@@ -212,13 +212,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getProfilePicture()
+    public function getProfilePicture(): string
     {
         $picture = $this->getPicture();
-        if (!empty($picture)) {
-            return $picture;
-        }
-        return User::DEFAULT_PROFILE_PICTURE;
+        return $picture ?? User::DEFAULT_PROFILE_PICTURE;
     }
 
 }

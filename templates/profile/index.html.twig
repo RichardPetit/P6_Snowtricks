@@ -3,24 +3,55 @@
 {% block title %}Mon profil{% endblock %}
 
 {% block body %}
-    <h1>Mon profil</h1>
+    <h1>Modifier mon profil</h1>
 
-
-    <img class="w-25 p-3" src="{{ user.getProfilePicture() }}" alt="">
-
-    <div class="register-form"></div>
-
-
-    {{ form_start(form) }}
-
-    {{ form_row(form.forename, {'label': 'Prénom', 'attr': {'placeholder': 'Votre prénom...'}}) }}
-    {{ form_row(form.name, {'label': 'Nom', 'attr': {'placeholder': 'Votre nom...'}}) }}
-
-    {{ form_row(form.email, {'label': 'Adresse email', 'attr': {'placeholder': 'Adresse email...'}}) }}
-    {{ form_row(form.picture, {'label': 'Lien', 'attr': {'placeholder': 'URL de votre image'}}) }}
-    <button type="submit" class="btn btn-success">Valider</button>
-    {{ form_end(form) }}
+    <div class="d-flex justify-content-center">
+        <img class="w-25 p-3" src="{{ user.getProfilePicture() }}" alt="">
     </div>
+    <div class="register-form">
+
+        <div class="d-flex justify-content-center">
+
+            {{ form_start(form) }}
+
+            <div>
+                {{ form_row(form.forename, {'label': 'Prénom',
+                    'attr': {'placeholder': 'Votre prénom...',
+                        'class' : 'form-control',
+                        'style' : 'width: 50vw; margin-bottom: 15px'
+                    }}) }}
+            </div>
+            <div>
+                {{ form_row(form.name, {'label': 'Nom',
+                    'attr': {'placeholder': 'Votre nom...',
+                        'class' : 'form-control',
+                        'style' : 'width: 50vw; margin-bottom: 15px'
+                    }}) }}
+            </div>
+            <div>
+                {{ form_row(form.email, {'label': 'Adresse email',
+                    'attr': {'placeholder': 'Adresse email...',
+                        'class' : 'form-control',
+                        'style' : 'width: 50vw; margin-bottom: 15px'
+                    }}) }}
+            </div>
+            <div>
+                {{ form_row(form.picture, {'label': 'Lien',
+                    'attr': {'placeholder': 'URL de votre image',
+                        'class' : 'form-control',
+                        'style' : 'width: 50vw; margin-bottom: 15px'
+                    }}) }}
+            </div>
+            <br>
+            <div>
+                <button type="submit" class="btn btn-lg btn-success">Valider</button>
+            </div>
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+
 
 
 {% endblock %}

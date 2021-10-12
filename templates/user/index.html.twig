@@ -18,6 +18,7 @@
             <thead>
             <tr>
                 <th scope="col">Id</th>
+                <th scope="col">Nom</th>
                 <th scope="col">Adresse email</th>
                 <th scope="col">Administrateur</th>
                 <th scope="col">Suppression</th>
@@ -28,6 +29,7 @@
             {% for user in users %}
                 <tr>
                     <th>{{ user.id }}</th>
+                    <th>{{ user.forename }} {{ user.name }}</th>
                     <th>{{ user.email }}</th>
                     <th>
                         {% if user.isAdmin() %}

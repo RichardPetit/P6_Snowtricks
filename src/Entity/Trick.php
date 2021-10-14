@@ -134,6 +134,15 @@ class Trick
         return $this->comments;
     }
 
+//    /**
+//     * @return Collection|Comment[]
+//     */
+//    public function getCommentsByCreationDate(): Collection
+//    {
+//        $comments = $this->getComments()
+//        return $this->comments;
+//    }
+
     public function addComment(Comment $comment): self
     {
         if (!$this->comments->contains($comment)) {

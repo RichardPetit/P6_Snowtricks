@@ -27,21 +27,20 @@ class CommentRepository extends ServiceEntityRepository
      * @param int $id
      */
 
-    public function getCommentsForArticle(int $id, int $page = 1, int $nmResults = self::NB_PER_PAGE): ?Comment
+    public function getCommentsForArticleByCreationDate(int $id, int $page = 1, int $nmResults = self::NB_PER_PAGE): ?Comment
     {
         $offset = ($page -1) * $nmResults;
         return $this->createQueryBuilder('c')
-            ->andWhere('c.active = 1')
             ->setParameter('id', $id)
             ->orderBy('c.id', 'DESC')
+            ->getQuery()
             ->setMaxResults($nmResults)
             ->setFirstResult($offset)
-            ->getQuery()
             ->getResult()
             ;
     }
 
-    public function getTotalNumberOfcommentsForATrick() : int
+    public function getTotalNumberOfCommentsForATrick() : int
     {
         return $this->createQueryBuilder('c')
             ->select('count(c.id)')
@@ -50,7 +49,7 @@ class CommentRepository extends ServiceEntityRepository
 
     public function getNbOfPages() : int
     {
-        $totalCount = $this->getTotalNumberOfcommentsForATrick();
+        $totalCount = $this->getTotalNumberOfCommentsForATrick();
         if ($totalCount <= self::NB_PER_PAGE) {
             return 1;
         }

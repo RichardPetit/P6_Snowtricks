@@ -6,28 +6,37 @@ body {
     color: lightblue;
 }
 
-.catchphrase{
+.catchphrase {
     font-size: 2rem;
     height: 20rem;
     background-image: url(/img/BWk4bXVB.jpg);
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: flex-end;
 }
-.catchphrase p{
-    background-image: linear-gradient(to left,black, navy, black);
+
+.catchphrase p {
+    background-image: linear-gradient(to left, black, navy, black);
     -webkit-background-clip: text;
     color: transparent;
+    text-align: center;
 }
-@media  (max-width: 893px) {
+
+.catchphrase a {
+    color: black;
+    margin: 0 5vw 0 5vw;
+    transition: transform .5s;
 
 }
 
-.mini-picture{
-    width-max: 150px;
-    height: 100px;
+.catchphrase a:hover {
+    transform: scale(1.2);
+}
+
+.mini-picture {
+    min-height: 30vh;
 }
 
 .card-trick {
@@ -37,26 +46,32 @@ body {
     transition: transform .5s;
 }
 
-.card-trick:hover{
+.card-trick:hover {
     transform: scale(1.05);
 }
-.card-trick img{
+
+.card-trick img {
     margin: 3px;
     border-radius: 5px;
 }
 
-.fa-pen:hover{
+
+
+.fa-pen:hover {
     color: lightblue;
 }
-.fa-trash-alt:hover{
+
+.fa-trash-alt:hover {
     color: lightblue;
 }
-.trick-content{
+
+.trick-content {
     display: flex;
     justify-content: space-around;
     margin: 2px;
 }
-.trick-name{
+
+.trick-name {
     width: 8rem;
     height: 2rem;
     overflow: hidden;
@@ -64,25 +79,26 @@ body {
 
 /* Form connection */
 
-.form-bottom{
+.form-bottom {
     display: flex;
     justify-content: space-around;
 }
 
-#passwordForget{
-   margin-top: 1rem;
+#passwordForget {
+    margin-top: 1rem;
 }
-h1.h3{
+
+h1.h3 {
     text-align: center;
 }
 
 /* Form register */
 
-.register-form{
-width: 50vw;
+.register-form {
+    width: 50vw;
 }
 
-.pagination li{
+.pagination li {
     margin: 0 2px 0 2px;
     padding: 2rem 0 0 0;
 }
@@ -104,6 +120,7 @@ th {
     caption-side: bottom;
     border-collapse: collapse;
 }
+
 .table-title {
     margin-bottom: 0.5rem;
 }
@@ -117,23 +134,19 @@ th {
     color: #c0001a;
     transform: scale(1.1);
 }
+
 .fa-pen:hover {
     color: #3386d7;
     transform: scale(1.1);
 }
 
-.table thead th{
+.table thead th {
     color: #3386d7;
 }
 
-.category-choice{
+.category-choice {
     width: 100px;
     display: flex;
-}
-
-
-.rouge{
-    background-color: red;
 }
 
 
@@ -149,6 +162,14 @@ th {
     width: 100%;
     height: auto;
 }
-.bg-black{
+
+.bg-black {
     background-color: black;
+}
+
+
+
+@media screen and (max-width: 560px) {
+
+
 }

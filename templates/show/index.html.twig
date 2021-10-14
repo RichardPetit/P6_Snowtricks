@@ -74,6 +74,9 @@
                         <p>Publié le
                             {{ comment.createdAt|date('d/m/Y H:i')}}
                             <br>
+                            <img class="w-50 p-3" src="{{ comment.user.getProfilePicture() }}" alt="">
+                            <br>
+
                             Par
                             {{ comment.user.forename }} {{ comment.user.name }}
                         </p>
@@ -85,6 +88,7 @@
                     </div>
                 </div>
             </div>
+            <hr>
         {% endfor %}
     </section>
 

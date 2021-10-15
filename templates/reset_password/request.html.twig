@@ -9,7 +9,10 @@
     <h1>Réinitialisez votre mot de passe</h1>
 
     {{ form_start(requestForm) }}
-        {{ form_row(requestForm.email) }}
+        {{ form_row(requestForm.email, {'label': 'Adresse email',
+            'attr': {'placeholder': 'Votre adresse email',
+                'class': 'form-control col-6'}
+        }) }}
         <div>
             <small>
                 Entrez votre adresse email et nous vous enverrons un
@@ -17,6 +20,6 @@
             </small>
         </div>
 
-        <button class="btn btn-primary">Envoyer l'email</button>
+        <button class="btn btn-lg btn-success">Envoyer l'email</button>
     {{ form_end(requestForm) }}
 {% endblock %}

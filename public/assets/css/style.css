@@ -8,13 +8,14 @@ body {
 
 .catchphrase {
     font-size: 2rem;
-    height: 20rem;
+    height: 90vh;
     background-image: url(/img/BWk4bXVB.jpg);
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
+    background-size: cover;
 }
 
 .catchphrase p {
@@ -167,9 +168,29 @@ th {
     background-color: black;
 }
 
-
+.smallScreen{
+    display: none;
+}
 
 @media screen and (max-width: 560px) {
 
+    .collapse:not(.show) {
+        display: flex;
+    }
+    ul .smallScreen{
+        width: 20vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .navbar-nav{
+        flex-direction: row;
+    }
+    .normalScreen{
+        display: none;
+    }
+    .navbar-brand {
+        display: none;
+    }
 
 }

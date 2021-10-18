@@ -67,7 +67,7 @@
 
     <section id="commentaires">
             <h2>Liste des commentaires</h2>
-        {% for comment in trick.comments %}
+        {% for comment in comments %}
             <div class="comment">
                 <div class="row">
                     <div class="col-3">
@@ -90,6 +90,9 @@
             </div>
             <hr>
         {% endfor %}
+        <div class="d-flex justify-content-center">
+            {{ include('components/pagination/paginationComments.html.twig') }}
+        </div>
     </section>
 
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}

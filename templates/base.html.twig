@@ -19,42 +19,58 @@
 
     </head>
     <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ path('home') }}">SnowTricks</a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
 
             <div class="collapse navbar-collapse row justify-content-end" id="navbarColor01">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
+                    <li class="nav-item normalScreen">
                         <a class="nav-link" href="{{ path('home') }}">Accueil</a>
+                    </li>
+                    <li class="nav-item smallScreen">
+                        <a class="nav-link" href="{{ path('home') }}"><i class="fas fa-home"></i></a>
                     </li>
 
 
                     {% if app.user %}
-                        <li class="nav-item">
+                        <li class="nav-item normalScreen">
                             <a class="nav-link" href="{{ path('profile') }}">Mon profil</a>
                         </li>
+                        <li class="nav-item smallScreen">
+                            <a class="nav-link" href="{{ path('profile') }}"><i class="fas fa-user"></i></a>
+                        </li>
+
 
                         {% if is_granted('ROLE_ADMIN') %}
-                            <li class="nav-item">
+                            <li class="nav-item normalScreen">
                                 <a class="nav-link" href="{{ path('admin_home') }}"> Administrer</a>
                             </li>
+                            <li class="nav-item smallScreen">
+                                <a class="nav-link" href="{{ path('admin_home') }}"><i class="fas fa-user-cog"></i></a>
+                            </li>
+
                         {% endif %}
-                        <li class="nav-item">
+                        <li class="nav-item normalScreen">
                             <a class="nav-link" href="{{ path('app_logout') }}"> Me déconnecter</a>
+                        </li>
+                        <li class="nav-item smallScreen">
+                            <a class="nav-link" href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i></a>
                         </li>
 
                     {% else %}
-                        <li class="nav-item">
+                        <li class="nav-item normalScreen">
                             <a class="nav-link" href="{{ path('app_login') }}"> Me connecter</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/register">Je m'inscris</a>
+                        <li class="nav-item smallScreen">
+                            <a class="nav-link" href="{{ path('app_login') }}"><i class="fas fa-sign-in-alt"></i></a>
+                        </li>
+                        <li class="nav-item normalScreen">
+                            <a class="nav-link" href="{{ path('security_registration') }}">Je m'inscris</a>
+                        </li>
+                        <li class="nav-item smallScreen">
+                            <a class="nav-link" href="{{ path('security_registration') }}"><i class="fas fa-user-plus"></i></a>
                         </li>
                     {% endif %}
 

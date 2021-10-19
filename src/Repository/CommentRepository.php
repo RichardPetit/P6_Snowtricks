@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Comment;
+use App\Entity\Trick;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -27,30 +28,32 @@ class CommentRepository extends ServiceEntityRepository
      * @param int $id
      */
 
-    public function getCommentsForArticle(int $id, int $page = 1, int $nmResults = self::NB_PER_PAGE): ?Comment
+    public function getCommentsForArticleByCreationDate(int $trickId, int $page = 1, int $nmResults = self::NB_PER_PAGE): ?array
     {
         $offset = ($page -1) * $nmResults;
         return $this->createQueryBuilder('c')
-            ->andWhere('c.active = 1')
-            ->setParameter('id', $id)
+            ->where('c.trick = :trickId')
+            ->setParameter('trickId', $trickId)
             ->orderBy('c.id', 'DESC')
+            ->getQuery()
             ->setMaxResults($nmResults)
             ->setFirstResult($offset)
-            ->getQuery()
             ->getResult()
             ;
     }
 
-    public function getTotalNumberOfcommentsForATrick() : int
+    public function getTotalNumberOfCommentsForATrick(Trick $trick) : int
     {
         return $this->createQueryBuilder('c')
             ->select('count(c.id)')
+            ->where('c.trick = :trickId')
+            ->setParameter('trickId', $trick->getId())
             ->getQuery()->getSingleScalarResult();
     }
 
-    public function getNbOfPages() : int
+    public function getNbOfPages(Trick $trick) : int
     {
-        $totalCount = $this->getTotalNumberOfcommentsForATrick();
+        $totalCount = $this->getTotalNumberOfCommentsForATrick($trick);
         if ($totalCount <= self::NB_PER_PAGE) {
             return 1;
         }

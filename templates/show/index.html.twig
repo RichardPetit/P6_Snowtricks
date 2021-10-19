@@ -37,7 +37,7 @@
                     <div class="carousel-item {{ key == 0 ? 'active' : '' }}">
                         {% if media.type == 'image' %}
                             <img height="380px" src="{{ media.link }}" alt="image de la figure"> &nbsp;
-                        {% else %}
+                            {% else %}
                             <div class="row justify-content-center" style="background-color: black;">
                                 <iframe width="70%" height="380px" src="{{ media.getEmbeddedUrlForVideo() }}"></iframe>
                             </div>
@@ -67,15 +67,18 @@
 
     <section id="commentaires">
             <h2>Liste des commentaires</h2>
-        {% for comment in trick.comments %}
+        {% for comment in comments %}
             <div class="comment">
                 <div class="row">
                     <div class="col-3">
                         <p>Publié le
                             {{ comment.createdAt|date('d/m/Y H:i')}}
                             <br>
+                            <img class="w-50 p-3" src="{{ comment.user.getProfilePicture() }}" alt="">
+                            <br>
+
                             Par
-                            {{ comment.user.email }}
+                            {{ comment.user.forename }} {{ comment.user.name }}
                         </p>
                     </div>
                     <div class="col">
@@ -85,21 +88,36 @@
                     </div>
                 </div>
             </div>
+            <hr>
         {% endfor %}
+        <div class="d-flex justify-content-center">
+            {{ include('components/pagination/paginationComments.html.twig') }}
+        </div>
     </section>
 
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <section>
-            <h2>Laisser un commentaire</h2>
+                <h2>Laisser un commentaire</h2>
+            <div class="d-flex justify-content-center">
                 <div class="comment">
-                        <div class="row">
-                            {{ form_start(formComment) }}
-                                {{ form_row(formComment.content) }}
-                                <button type="submit" class="btn btn-success">Enregistrer</button>
-                            {{ form_end(formComment) }}
+                    <div class="row">
+                        {{ form_start(formComment) }}
+                        <div>
+                            {{ form_row(formComment.content, {'label': 'Votre message',
+                                'attr': {
+                                    'class' : 'form-control',
+                                    'style' : 'width: 75vw; height: 16vh',
+                                    'required' : true
+                                }
+                            }) }}
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-lg btn-success">Enregistrer</button>
+                        {{ form_end(formComment) }}
 
                     </div>
                 </div>
+            </div>
 
             <div>
 

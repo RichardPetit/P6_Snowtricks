@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class RegistrationType extends AbstractType
+class ProfileEditType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -19,9 +19,7 @@ class RegistrationType extends AbstractType
             ->add('forename', TextType::class)
             ->add('name', TextType::class)
             ->add('email', EmailType::class)
-            ->add('picture', UrlType::class, ['label' => 'Lien'])
-            ->add('password', PasswordType::class)
-            ->add('confirm_password', PasswordType::class)
+            ->add('picture', TextType::class, ['label' => 'Lien'])
         ;
     }
 

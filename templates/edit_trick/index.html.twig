@@ -10,35 +10,32 @@
 {% form_theme formTrick 'bootstrap_5_layout.html.twig' %}
 
 {% block body %}
-    <h1>Modifier une figure !</h1>
-    <p class="rouge"> je veux un fond rouge!!!!</p>
+    <h1>Modifier la figure !</h1>
 
     {{ form_start(formTrick) }}
-    {#    <label for="">Nom</label>#}
-    {{ form_row(formTrick.name, {'attr': {'placeholder': "Nom de la figure"}}) }}
-    {#    <label for="">Description</label>#}
-    {{ form_row(formTrick.description) }}
-    <div class="form-control">
-    <div class="category-choice ">{{ form_row(formTrick.category) }}</div>
-    </div>
+    {{ form_row(formTrick.name, {'label' : 'Nom',
+        'attr': {'placeholder': "Nom de la figure"}}) }}
+    {{ form_row(formTrick.description, {'label': 'Description'}) }}
+    {{ form_row(formTrick.category, { 'label' : 'Catégorie',
+        'attr': {'class' : 'form-control'}}) }}
 
-    <button type="submit" class="btn btn-success">Mettre à jour </button>
+    <button type="submit" class="btn btn-lg btn-success">Enregistrer </button>
 
     {{ form_end(formTrick) }}
     <br>
 
     <h1>Gestion des medias</h1>
 
-    <p class="rouge"> je veux un fond rouge!!!!</p>
-
     <h5>Ajouter</h5>
 
     {{ form_start(formMedia) }}
-    {#    <label for="">Nom</label>#}
-    {{ form_row(formMedia.type, {'attr': {'placeholder': "Nom de la figure"}}) }}
-    {#    <label for="">Description</label>#}
-    {{ form_row(formMedia.link) }}
-    <button type="submit" class="btn btn-success">Enregister </button>
+    {{ form_row(formMedia.type, {'label' : 'Type de média',
+    'attr' : {'class' : 'form-control'}}) }}
+    <br>
+    {{ form_row(formMedia.link, {'label' : 'Lien',
+        'attr' : {'class' : 'form-control'}}) }}
+    <br>
+    <button type="submit" class="btn btn-lg btn-success">Enregistrer </button>
 
 
     {{ form_end(formMedia) }}

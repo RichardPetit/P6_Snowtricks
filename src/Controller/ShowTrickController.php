@@ -45,11 +45,17 @@ class ShowTrickController extends AbstractController
             $this->addFlash('success', 'Votre commentaire a bien été ajouté');
         }
 
+        $page = $request->get('page') !== null ? (int) $request->get('page') : 1;
 
         return $this->render('show/index.html.twig', [
             'trick' => $trick,
             'medias' => $trick->getMedias(),
-            'formComment' => $commentForm->createView( )
+            'formComment' => $commentForm->createView(),
+            'nbPages'   => $commentRepository->getNbOfPages($trick),
+            'currentPage' => $page,
+            'slug' => $trick->getSlug(),
+            'comments' => $commentRepository->getCommentsForArticleByCreationDate($trick->getId(), $page),
+            'url' => 'trick_show'
         ]);
     }
 

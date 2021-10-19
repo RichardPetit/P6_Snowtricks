@@ -17,22 +17,22 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Trick
 {
     public const TRICK_CATEGORY = [
-                    'Grab'       => "grab",
-                    'Rotation'   => "rotation",
-                    'Flip'       => "flip",
-                    'Slide'      => "slide",
-                    'One-foot'   => "one-foot",
-                    'Old-school' => "old-school",
-                ];
+        'Grab'       => "grab",
+        'Rotation'   => "rotation",
+        'Flip'       => "flip",
+        'Slide'      => "slide",
+        'One-foot'   => "one-foot",
+        'Old-school' => "old-school",
+    ];
 
     public const TRICK_CATEGORY_DISPLAY = [
-                    'grab'       => "Grab",
-                    'rotation'   => "Rotation",
-                    'flip'       => "Flip",
-                    'slide'      => "Slide",
-                    'one-foot'   => "One-foot",
-                    'old-school' => "Old-school",
-                ];
+        'grab'       => "Grab",
+        'rotation'   => "Rotation",
+        'flip'       => "Flip",
+        'slide'      => "Slide",
+        'one-foot'   => "One-foot",
+        'old-school' => "Old-school",
+    ];
 
     /**
      * @ORM\Id
@@ -134,15 +134,6 @@ class Trick
         return $this->comments;
     }
 
-//    /**
-//     * @return Collection|Comment[]
-//     */
-//    public function getCommentsByCreationDate(): Collection
-//    {
-//        $comments = $this->getComments()
-//        return $this->comments;
-//    }
-
     public function addComment(Comment $comment): self
     {
         if (!$this->comments->contains($comment)) {
@@ -228,6 +219,4 @@ class Trick
         return self::TRICK_CATEGORY_DISPLAY[$category];
 
     }
-
-
 }

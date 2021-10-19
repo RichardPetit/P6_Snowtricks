@@ -25,15 +25,11 @@ class CreateTrickController extends AbstractController
         $form = $this->createForm(TrickType::class, $trick);
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()){
-//            if ($tricksRepository->exists($trick->getName())) {
-//                $this->addFlash('error', 'Nom de figure déjà utilisé.');
-//            }
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $trick->generateSlug();
             $em->persist($trick);
             $em->flush();
-
 
             $this->addFlash('success', 'La figure a bien été ajoutée.');
 
@@ -44,6 +40,5 @@ class CreateTrickController extends AbstractController
             'formTrick' => $form->createView(),
         ]);
     }
-
 
 }

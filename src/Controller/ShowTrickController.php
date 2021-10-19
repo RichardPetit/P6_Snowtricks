@@ -22,11 +22,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class ShowTrickController extends AbstractController
 {
 
-    public function __invoke(CommentRepository $commentRepository, TrickMediaRepository $mediaRepository, Request $request,
-                             EntityManagerInterface $em, Trick $trick = null): Response
+    public function __invoke(CommentRepository $commentRepository, TrickMediaRepository $mediaRepository,
+                             Request           $request, EntityManagerInterface $em, Trick $trick = null): Response
     {
-        
-//        $media = $this->getMedia($id);
+
         if ($trick === null) {
             return $this->redirectToRoute('home');
         }
@@ -36,7 +35,7 @@ class ShowTrickController extends AbstractController
         $comment = new Comment();
         $commentForm = $this->createForm(CommentType::class, $comment);
         $commentForm->handleRequest($request);
-        if ($commentForm->isSubmitted() && $commentForm->isValid()){
+        if ($commentForm->isSubmitted() && $commentForm->isValid()) {
             $comment->setTrick($trick);
             $comment->setUser($this->getUser());
             $em->persist($comment);
@@ -45,13 +44,13 @@ class ShowTrickController extends AbstractController
             $this->addFlash('success', 'Votre commentaire a bien été ajouté');
         }
 
-        $page = $request->get('page') !== null ? (int) $request->get('page') : 1;
+        $page = $request->get('page') !== null ? (int)$request->get('page') : 1;
 
         return $this->render('show/index.html.twig', [
             'trick' => $trick,
             'medias' => $trick->getMedias(),
             'formComment' => $commentForm->createView(),
-            'nbPages'   => $commentRepository->getNbOfPages($trick),
+            'nbPages' => $commentRepository->getNbOfPages($trick),
             'currentPage' => $page,
             'slug' => $trick->getSlug(),
             'comments' => $commentRepository->getCommentsForArticleByCreationDate($trick->getId(), $page),

@@ -31,9 +31,9 @@ class CreateTrickController extends AbstractController
             $em->persist($trick);
             $em->flush();
 
-            $this->addFlash('success', 'La figure a bien été ajoutée.');
+            $this->addFlash('success', 'La figure a bien été ajoutée. Vous pouvez maintenant y ajouter des médias.');
 
-            return $this->redirectToRoute('admin_home');
+            return $this->redirectToRoute('edit_trick',['id' => $trick->getId()]);
         }
 
         return $this->render('create/index.html.twig', [

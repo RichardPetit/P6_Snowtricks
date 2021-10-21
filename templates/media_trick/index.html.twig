@@ -8,17 +8,13 @@
     <h1>Ajout d'image ou vidéo</h1>
 
     {{ form_start(formMedia) }}
-    {#    <label for="">Nom</label>#}
     {{ form_row(formMedia.type, {'attr': {'placeholder': "Format du média (Image ou Vidéo)"}}) }}
-    {#    <label for="">Description</label>#}
     {{ form_row(formMedia.link, {'attr': {'placeholder': "URL du média"}}) }}
-{#    {{ form_row(formMedia.trick, {'attr': {'placeholder': "Id de la figure"}}) }}#}
 
     <button type="submit" class="btn btn-success">Enregister </button>
 
     {{ form_end(formMedia) }}
 
-    {#    ajouer un nouveau form ou sauvegarder les médias #}
 
 
 {% endblock %}

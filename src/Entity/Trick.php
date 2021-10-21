@@ -83,6 +83,7 @@ class Trick
     {
         $this->setCreatedAt(new \DateTimeImmutable());
         $this->comments = new ArrayCollection();
+        $this->medias = new ArrayCollection();
     }
 
     public function getId(): ?int

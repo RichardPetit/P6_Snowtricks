@@ -25,25 +25,20 @@ class CreateTrickController extends AbstractController
         $form = $this->createForm(TrickType::class, $trick);
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()){
-//            if ($tricksRepository->exists($trick->getName())) {
-//                $this->addFlash('error', 'Nom de figure déjà utilisé.');
-//            }
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $trick->generateSlug();
             $em->persist($trick);
             $em->flush();
 
+            $this->addFlash('success', 'La figure a bien été ajoutée. Vous pouvez maintenant y ajouter des médias.');
 
-            $this->addFlash('success', 'La figure a bien été ajoutée.');
-
-            return $this->redirectToRoute('admin_home');
+            return $this->redirectToRoute('edit_trick',['id' => $trick->getId()]);
         }
 
         return $this->render('create/index.html.twig', [
             'formTrick' => $form->createView(),
         ]);
     }
-
 
 }

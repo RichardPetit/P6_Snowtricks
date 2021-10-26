@@ -23,6 +23,7 @@ class DeleteCommentController extends AbstractController
             $em->remove($comment);
             $em->flush();
         }
+        $this->addFlash('error', 'Le commentaire a bien été supprimé');
         return $this->redirectToRoute('admin_home');
     }
 }

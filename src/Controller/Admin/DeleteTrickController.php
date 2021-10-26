@@ -20,10 +20,16 @@ class DeleteTrickController extends AbstractController
     public function __invoke(EntityManagerInterface $em, Trick $trick = null): Response
     {
         if ($trick !== null) {
+
+            $medias = $trick->getMedias();
+            foreach ($medias as $media) {
+                $em->remove($media);
+            }
+            $em->flush();
             $em->remove($trick);
             $em->flush();
         }
-
+        $this->addFlash('error', 'La figure a bien été supprimée');
         return $this->redirectToRoute('admin_home');
     }
 }

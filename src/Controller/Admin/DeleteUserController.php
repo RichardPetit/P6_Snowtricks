@@ -22,7 +22,7 @@ class DeleteUserController extends AbstractController
             $em->flush();
         }
 
+        $this->addFlash('error', 'L\'utilisateur a bien été supprimé');
         return $this->redirectToRoute('users_list');
-
     }
 }

@@ -64,6 +64,35 @@
         </div>
 
     </article>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <section>
+            <h2>Laisser un commentaire</h2>
+            <div class="d-flex justify-content-center">
+                <div class="comment">
+                    <div class="row">
+                        {{ form_start(formComment) }}
+                        <div>
+                            {{ form_row(formComment.content, {'label': 'Votre message',
+                                'attr': {
+                                    'class' : 'form-control',
+                                    'style' : 'width: 75vw; height: 16vh',
+                                    'required' : true
+                                }
+                            }) }}
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-lg btn-success">Enregistrer</button>
+                        {{ form_end(formComment) }}
+
+                    </div>
+                </div>
+            </div>
+
+            <div>
+
+            </div>
+        </section>
+    {% endif %}
 
     <section id="commentaires">
             <h2>Liste des commentaires</h2>
@@ -95,34 +124,5 @@
         </div>
     </section>
 
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        <section>
-                <h2>Laisser un commentaire</h2>
-            <div class="d-flex justify-content-center">
-                <div class="comment">
-                    <div class="row">
-                        {{ form_start(formComment) }}
-                        <div>
-                            {{ form_row(formComment.content, {'label': 'Votre message',
-                                'attr': {
-                                    'class' : 'form-control',
-                                    'style' : 'width: 75vw; height: 16vh',
-                                    'required' : true
-                                }
-                            }) }}
-                        </div>
-                        <br>
-                        <button type="submit" class="btn btn-lg btn-success">Enregistrer</button>
-                        {{ form_end(formComment) }}
-
-                    </div>
-                </div>
-            </div>
-
-            <div>
-
-            </div>
-        </section>
-    {% endif %}
 
 {% endblock %}

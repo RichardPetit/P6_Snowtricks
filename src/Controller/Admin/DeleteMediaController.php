@@ -24,9 +24,12 @@ class DeleteMediaController extends AbstractController
             $em->remove($media);
             $em->flush();
 
+            $this->addFlash('error', 'Le media a bien été supprimé');
+
             return $this->redirectToRoute('edit_trick', ['id'=> $trick->getId()]);
 
         }
+
         return $this->redirectToRoute('admin_home');
 
     }
